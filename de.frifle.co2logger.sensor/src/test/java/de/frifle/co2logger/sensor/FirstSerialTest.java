@@ -1,47 +1,40 @@
 package de.frifle.co2logger.sensor;
 
-import java.util.logging.Logger;
-import java.util.logging.Level;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.*;
 
-import org.junit.jupiter.api.Test;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class FirstSerialTest {
 
     private static final Logger LOG = Logger.getLogger(FirstSerialTest.class.getName());
 
     private String portName = "/dev/ttyS0";
-   
 
-    @Test
-    public void testReadCo2Value() throws Exception {
+
+    @ParameterizedTest
+    @MethodSource("provideRequests")
+    public void testReadResponse( AbstractMHZ19Request<?> request ) throws Exception {
         try( MHZ19Sensor sensor = new MHZ19Sensor( portName ) ) {
-            ReadCO2ValueRequest request = new ReadCO2ValueRequest();
-            ReadCO2ValueResponse response = sensor.sendRequest(request);
+            AbstractMHZ19Response response = sensor.sendRequest(request);
 
             LOG.log(Level.INFO, "Got Response: {0}", response);
 
+            assertThat( response.getCommand(), is( request.getCommand() ));
         }
     }
 
-    @Test
-    public void testDetectorRangeValue() throws Exception {
-        try( MHZ19Sensor sensor = new MHZ19Sensor( portName ) ) {
-
-            ReadDetectorRangeRequest request = new ReadDetectorRangeRequest();
-            ReadDetectorRangeResponse response = sensor.sendRequest(request);
-
-            LOG.log(Level.INFO, "Got Response: {0}", response);
-        }
+    private static Stream<AbstractMHZ19Request<?>> provideRequests() {
+    	return Stream.of( new ReadCO2ValueRequest()
+    			, new ReadDetectorRangeRequest()
+    			, new ReadRawValuesRequest()
+    			, new ReadABCStatusRequest()
+    			);
     }
 
-    @Test
-    public void testReadRawValues() throws Exception {
-        try( MHZ19Sensor sensor = new MHZ19Sensor( portName ) ) {
-
-            ReadRawValuesRequest request = new ReadRawValuesRequest();
-            ReadRawValuesResponse response = sensor.sendRequest(request);
-
-            LOG.log(Level.INFO, "Got Response: {0}", response);
-        }
-    }
 }

@@ -2,34 +2,30 @@ package de.frifle.co2logger.sensor;
 
 public class ReadABCStatusResponse extends AbstractMHZ19Response {
 
-    private final int co2Value;
-    private final int temperature;
+    private final boolean abc;
 
     public ReadABCStatusResponse(byte[] data) {
         super( data );
-        this.co2Value = parseCo2Value(data);
-        this.temperature = parseTemperature(data);
+        this.abc = parseABCValue(data);
     }
 
-    public int getCo2Value() {
-        return co2Value;
-    }
+    public boolean isAbc() {
+		return abc;
+	}
 
-    public int getTemperature() {
-        return temperature;
+    public ABCStatus getABCStatus() {
+    	return abc ? ABCStatus.ON : ABCStatus.OFF;
     }
 
     @Override
     public String toString() {
-        return String.format("Current values: co2=%d, temp=%d", co2Value, temperature );
+        return String.format("Current ABC status: %s", getABCStatus() );
     }
 
 
-    private int parseCo2Value( byte[] data ) {
-        return (0xff&data[2]) * 256 + (0xff&data[3]);
+    private boolean parseABCValue( byte[] data ) {
+        return (0xff&data[7]) == 1;
     }
 
-    private int parseTemperature( byte[] data ) {
-        return ( (0xff&data[4]) - 32 ) * 5 / 9;
-    }
+
 }
