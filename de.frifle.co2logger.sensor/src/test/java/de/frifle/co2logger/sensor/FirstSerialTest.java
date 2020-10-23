@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -29,8 +30,9 @@ class FirstSerialTest {
 		}
 	}
 
-    // @Test
-	void ignoreTestSetABCStatus() throws Exception {
+    @Test
+    @Disabled
+	void testSetABCStatus() throws Exception {
 		try (MHZ19Sensor sensor = new MHZ19Sensor(portName)) {
 			SetABCStatusRequest request = new SetABCStatusRequest(ABCStatus.OFF);
 			AbstractMHZ19Response response = sensor.sendRequest(request);
@@ -40,8 +42,9 @@ class FirstSerialTest {
 		}
 	}
 
-    // @Test
-	void ignoreTestReset() throws Exception {
+    @Test
+    @Disabled
+	void testReset() throws Exception {
 		try (MHZ19Sensor sensor = new MHZ19Sensor(portName)) {
 			ResetSensorRequest request = new ResetSensorRequest();
 			AbstractMHZ19Response response = sensor.sendRequest(request);
@@ -51,8 +54,9 @@ class FirstSerialTest {
 		}
 	}
 
-	// @Test
-	void ignoreTestSetSensorRange() throws Exception {
+	@Test
+	@Disabled
+	void testSetSensorRange() throws Exception {
 		try (MHZ19Sensor sensor = new MHZ19Sensor(portName)) {
 			SetSensorRangeRequest request = new SetSensorRangeRequest(SensorRange.FIVE_THOUSAND);
 			ACKResponse response = sensor.sendRequest(request);
