@@ -58,8 +58,6 @@ public class MHZ19Sensor implements AutoCloseable {
     }
 
     public <M extends AbstractMHZ19Response> M sendRequest(AbstractMHZ19Request<M> request) throws IOException {
-        LOG.log(Level.FINE,"writing bytes of request {0}", request);
-
         writeRequest( request );
         byte[] response = readResponse( request.getNumberOfResponseBytes() );
 
@@ -112,12 +110,12 @@ public class MHZ19Sensor implements AutoCloseable {
         SerialPort port = portId.open(MHZ19Sensor.class.getName(), WAIT_FOR_PORT_AVAIL);
         port.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
         port.enableReceiveTimeout(WAIT_FOR_DATA_AVAIL);
-        LOG.log(Level.CONFIG, "opened MH-Z19-Sensor on port {0}", portId.getName());
+        LOG.log(Level.INFO, "opened MH-Z19-Sensor on port {0}", portId.getName());
         return port;
     }
 
     private void log( String message, byte[] data, byte crc ) {
-        LOG.finer( () -> {
+        LOG.info( () -> {
 	        StringBuilder sb = new StringBuilder(message);
 	        for ( int i=0; data!=null && i<data.length; i++) {
 	            sb.append( toHexString( data[i] ) );

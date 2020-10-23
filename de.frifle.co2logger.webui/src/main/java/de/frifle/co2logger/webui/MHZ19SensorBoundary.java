@@ -42,7 +42,7 @@ public class MHZ19SensorBoundary {
 		try {
 			sensor = new MHZ19Sensor(defaultCommPort);
 		} catch (MHZ19Exception e) {
-			LOG.log(Level.WARNING, "oups, cant instantiate the MH-Z19 Sensor Bean", e);
+			LOG.log(Level.WARNING, "oups, cant instantiate the MH-Z19 Sensor Bean at port "+defaultCommPort+".", e);
 			throw new RuntimeException(e);
 		}
 	}
