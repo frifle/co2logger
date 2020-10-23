@@ -30,7 +30,7 @@ public class FirstSerialTest {
         }
     }
 
-//    @Test
+    //@Test
     public void ignoreTestSetABCStatus() throws Exception {
         try( MHZ19Sensor sensor = new MHZ19Sensor( portName ) ) {
             SetABCStatusRequest request = new SetABCStatusRequest( ABCStatus.OFF );
@@ -41,7 +41,7 @@ public class FirstSerialTest {
         }
     }
 
-//  @Test
+  //@Test
   public void ignoreTestReset() throws Exception {
       try( MHZ19Sensor sensor = new MHZ19Sensor( portName ) ) {
     	  ResetSensorRequest request = new ResetSensorRequest();
