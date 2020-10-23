@@ -67,8 +67,13 @@ class FirstSerialTest {
 	}
 
 	private static Stream<AbstractMHZ19Request<?>> provideRequests() {
-		return Stream.of(new ReadCO2ValueRequest(), new ReadSensorRangeRequest(), new ReadRawValuesRequest(),
-				new ReadABCStatusRequest());
+		return Stream.of(new ReadCO2ValueRequest()
+				, new ReadRawCO2Request()
+				, new ReadRawValuesRequest()
+				, new ReadSensorRangeRequest()
+				, new ReadDACRangeRequest()
+				, new ReadABCStatusRequest()
+				);
 	}
 
 }
