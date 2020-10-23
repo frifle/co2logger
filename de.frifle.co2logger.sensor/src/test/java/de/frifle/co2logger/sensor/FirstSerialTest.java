@@ -41,6 +41,17 @@ public class FirstSerialTest {
         }
     }
 
+//  @Test
+  public void ignoreTestReset() throws Exception {
+      try( MHZ19Sensor sensor = new MHZ19Sensor( portName ) ) {
+    	  ResetSensorRequest request = new ResetSensorRequest();
+          AbstractMHZ19Response response = sensor.sendRequest(request);
+
+          LOG.log(Level.INFO, "Got Response: {0}", response);
+
+      }
+  }
+
     private static Stream<AbstractMHZ19Request<?>> provideRequests() {
     	return Stream.of( new ReadCO2ValueRequest()
     			, new ReadDetectorRangeRequest()

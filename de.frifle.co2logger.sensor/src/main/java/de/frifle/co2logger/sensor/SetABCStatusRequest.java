@@ -14,6 +14,13 @@ public class SetABCStatusRequest extends AbstractMHZ19Request<ACKResponse> {
     }
 
     @Override
+    public byte[] getData() {
+    	byte[] data = super.getData();
+    	data[0] = this.status == ABCStatus.ON ? (byte)0xa0 : (byte)0x00;
+    	return data;
+    }
+
+    @Override
     public ACKResponse generateResponse( byte[] data) {
         return new ACKResponse( data) ;
     }
