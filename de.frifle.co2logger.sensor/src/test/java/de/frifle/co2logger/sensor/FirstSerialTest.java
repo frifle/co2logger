@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -26,6 +27,17 @@ public class FirstSerialTest {
             LOG.log(Level.INFO, "Got Response: {0}", response);
 
             assertThat( response.getCommand(), is( request.getCommand() ));
+        }
+    }
+
+//    @Test
+    public void ignoreTestSetABCStatus() throws Exception {
+        try( MHZ19Sensor sensor = new MHZ19Sensor( portName ) ) {
+            SetABCStatusRequest request = new SetABCStatusRequest( ABCStatus.OFF );
+            AbstractMHZ19Response response = sensor.sendRequest(request);
+
+            LOG.log(Level.INFO, "Got Response: {0}", response);
+
         }
     }
 
