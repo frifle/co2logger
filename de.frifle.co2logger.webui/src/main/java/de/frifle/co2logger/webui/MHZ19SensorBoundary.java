@@ -54,6 +54,7 @@ public class MHZ19SensorBoundary {
 		}
 	}
 
+	@SimpleCache
 	public MHZ19Data readCurrentData() throws IOException {
 		MHZ19Data dto = new MHZ19Data();
 		{
