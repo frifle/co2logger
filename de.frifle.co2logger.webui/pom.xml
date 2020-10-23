@@ -53,7 +53,7 @@
                         <goal>copy-resources</goal>
                     </goals>
                     <configuration>
-                        <outputDirectory>../../payara/payara-5/glassfish/domains/domain1/autodeploy</outputDirectory>
+                        <outputDirectory>/home/pi/payara/payara-5/glassfish/domains/domain1/autodeploy</outputDirectory>
                         <resources>
                             <resource>
                                 <directory>target</directory>
