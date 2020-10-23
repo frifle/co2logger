@@ -7,11 +7,13 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.inject.Inject;
 
 @ApplicationScoped
 @Path("/mhz19")
 public class MHZ19Resource {
 
+	@Inject
 	private MHZ19SensorBoundary sensor;
 
 	@GET

@@ -3,15 +3,14 @@ package de.frifle.co2logger.webui;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import org.eclipse.microprofile.metrics.annotation.Gauge;
 
 import de.frifle.co2logger.sensor.ABCStatus;
 
-@RequestScoped
+@ApplicationScoped
 public class MHZ19Metrics {
 
 	private static final Logger LOG = Logger.getLogger(MHZ19Metrics.class.getName());
@@ -19,65 +18,63 @@ public class MHZ19Metrics {
 	@Inject
 	private MHZ19SensorBoundary sensor;
 
-	private MHZ19Data dto;
-
-	@PostConstruct
-	private void readData() {
+	private MHZ19Data getDto() {
 		try {
-			dto = sensor.readCurrentData();
+			return sensor.readCurrentData();
 		} catch (Exception e) {
 			LOG.log(Level.SEVERE, "oups, no connection to mh-z19-sensor", e);
+			throw new RuntimeException(e);
 		}
 	}
-
+	
 	public ABCStatus getAbcStatus() {
-		return dto.getAbcStatus();
+		return getDto().getAbcStatus();
 	}
 
 	@Gauge(unit = "ppm", name = "co2Value", displayName = "CO2 Value")
 	public int getCo2Value() {
-		return dto.getCo2Value();
+		return getDto().getCo2Value();
 	}
 
 	@Gauge(unit = "ppm", name = "unclambedCo2Value", displayName = "Unclamped CO2 Value")
 	public int getUnclampedCo2Value() {
-		return dto.getUnclampedCo2Value();
+		return getDto().getUnclampedCo2Value();
 	}
 
 	@Gauge(unit = "some count", name = "rawCo2Value", displayName = "RAW CO2 Value")
 	public int getRawCo2Value() {
-		return dto.getRawCo2Value();
+		return getDto().getRawCo2Value();
 	}
 
 	@Gauge(unit = "°C", name = "temperature", displayName = "Temperature")
 	public int getTemperature() {
-		return dto.getTemperature();
+		return getDto().getTemperature();
 	}
 
 	public int getDacRangehighValue() {
-		return dto.getDacRangehighValue();
+		return getDto().getDacRangehighValue();
 	}
 
 	public int getDacRangelowValue() {
-		return dto.getDacRangelowValue();
+		return getDto().getDacRangelowValue();
 	}
 
 	@Gauge(unit = "°C", name = "rawTemperature", displayName = "RAW Temperature")
 	public int getRawTemperature() {
-		return dto.getRawTemperature();
+		return getDto().getRawTemperature();
 	}
 
 	@Gauge(unit = "some count", name = "light", displayName = "Light")
 	public int getLightValue() {
-		return dto.getLightValue();
+		return getDto().getLightValue();
 	}
 
 	public int getSensorRangeHighValue() {
-		return dto.getSensorRangeHighValue();
+		return getDto().getSensorRangeHighValue();
 	}
 
 	public int getSensorRangeLowValue() {
-		return dto.getSensorRangeLowValue();
+		return getDto().getSensorRangeLowValue();
 	}
 
 }

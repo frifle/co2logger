@@ -1,22 +1,34 @@
 package de.frifle.co2logger.webui;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
 
 import de.frifle.co2logger.sensor.ABCStatus;
 
 @XmlRootElement(name = "mhz-19")
 public class MHZ19Data {
 
+	@XmlElement
 	private ABCStatus abcStatus;
+	@XmlElement
 	private int co2Value;
+	@XmlElement
 	private int unclampedCo2Value;
+	@XmlElement
 	private int rawCo2Value;
+	@XmlElement
 	private int temperature;
+	@XmlElement
 	private int dacRangehighValue;
+	@XmlElement
 	private int dacRangelowValue;
+	@XmlElement
 	private int rawTemperature;
+	@XmlElement
 	private int lightValue;
+	@XmlElement
 	private int sensorRangeHighValue;
+	@XmlElement
 	private int sensorRangeLowValue;
 
 	public ABCStatus getAbcStatus() {
