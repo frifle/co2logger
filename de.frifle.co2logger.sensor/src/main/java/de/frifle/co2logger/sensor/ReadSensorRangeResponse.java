@@ -1,11 +1,11 @@
 package de.frifle.co2logger.sensor;
 
-public class ReadDetectorRangeResponse extends AbstractMHZ19Response {
-    
+public class ReadSensorRangeResponse extends AbstractMHZ19Response {
+
     private final int highValue;
     private final int lowValue;
 
-    public ReadDetectorRangeResponse(byte[] data) {
+    public ReadSensorRangeResponse(byte[] data) {
         super( data );
         this.highValue = parseHighValue(data);
         this.lowValue = parseLowValue(data);
@@ -17,6 +17,10 @@ public class ReadDetectorRangeResponse extends AbstractMHZ19Response {
 
     public int getLowValue() {
         return lowValue;
+    }
+
+    public SensorRange getDetectorRange() {
+    	return SensorRange.valueOf(lowValue, highValue);
     }
 
     @Override

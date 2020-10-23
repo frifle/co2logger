@@ -1,6 +1,6 @@
 package de.frifle.co2logger.sensor;
 
-public class ResetSensorRequest extends AbstractMHZ19Request<ACKResponse> {
+public class ResetSensorRequest extends AbstractMHZ19Request<NoResponse> {
 
     @Override
     public byte getCommand() {
@@ -8,7 +8,12 @@ public class ResetSensorRequest extends AbstractMHZ19Request<ACKResponse> {
     }
 
     @Override
-    public ACKResponse generateResponse( byte[] data) {
-        return new ACKResponse( data) ;
+    public int getNumberOfResponseBytes() {
+    	return 0;
+    }
+
+    @Override
+    public NoResponse generateResponse( byte[] data) {
+        return new NoResponse( data) ;
     }
 }

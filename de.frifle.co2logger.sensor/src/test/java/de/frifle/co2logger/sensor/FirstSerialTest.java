@@ -11,53 +11,60 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class FirstSerialTest {
+class FirstSerialTest {
 
-    private static final Logger LOG = Logger.getLogger(FirstSerialTest.class.getName());
+	private static final Logger LOG = Logger.getLogger(FirstSerialTest.class.getName());
 
-    private String portName = "/dev/ttyS0";
+	private String portName = "/dev/ttyS0";
 
+	@ParameterizedTest
+	@MethodSource("provideRequests")
+	void testReadResponse(AbstractMHZ19Request<?> request) throws Exception {
+		try (MHZ19Sensor sensor = new MHZ19Sensor(portName)) {
+			AbstractMHZ19Response response = sensor.sendRequest(request);
 
-    @ParameterizedTest
-    @MethodSource("provideRequests")
-    public void testReadResponse( AbstractMHZ19Request<?> request ) throws Exception {
-        try( MHZ19Sensor sensor = new MHZ19Sensor( portName ) ) {
-            AbstractMHZ19Response response = sensor.sendRequest(request);
+			LOG.log(Level.INFO, "Got Response: {0}", response);
 
-            LOG.log(Level.INFO, "Got Response: {0}", response);
+			assertThat(response.getCommand(), is(request.getCommand()));
+		}
+	}
 
-            assertThat( response.getCommand(), is( request.getCommand() ));
-        }
-    }
+    // @Test
+	void ignoreTestSetABCStatus() throws Exception {
+		try (MHZ19Sensor sensor = new MHZ19Sensor(portName)) {
+			SetABCStatusRequest request = new SetABCStatusRequest(ABCStatus.OFF);
+			AbstractMHZ19Response response = sensor.sendRequest(request);
 
-//    @Test
-    public void ignoreTestSetABCStatus() throws Exception {
-        try( MHZ19Sensor sensor = new MHZ19Sensor( portName ) ) {
-            SetABCStatusRequest request = new SetABCStatusRequest( ABCStatus.OFF );
-            AbstractMHZ19Response response = sensor.sendRequest(request);
+			LOG.log(Level.INFO, "Got Response: {0}", response);
 
-            LOG.log(Level.INFO, "Got Response: {0}", response);
+		}
+	}
 
-        }
-    }
+    // @Test
+	void ignoreTestReset() throws Exception {
+		try (MHZ19Sensor sensor = new MHZ19Sensor(portName)) {
+			ResetSensorRequest request = new ResetSensorRequest();
+			AbstractMHZ19Response response = sensor.sendRequest(request);
 
-//  @Test
-  public void ignoreTestReset() throws Exception {
-      try( MHZ19Sensor sensor = new MHZ19Sensor( portName ) ) {
-    	  ResetSensorRequest request = new ResetSensorRequest();
-          AbstractMHZ19Response response = sensor.sendRequest(request);
+			LOG.log(Level.INFO, "Got Response: {0}", response);
 
-          LOG.log(Level.INFO, "Got Response: {0}", response);
+		}
+	}
 
-      }
-  }
+	// @Test
+	void ignoreTestSetSensorRange() throws Exception {
+		try (MHZ19Sensor sensor = new MHZ19Sensor(portName)) {
+			SetSensorRangeRequest request = new SetSensorRangeRequest(SensorRange.FIVE_THOUSAND);
+			ACKResponse response = sensor.sendRequest(request);
 
-    private static Stream<AbstractMHZ19Request<?>> provideRequests() {
-    	return Stream.of( new ReadCO2ValueRequest()
-    			, new ReadDetectorRangeRequest()
-    			, new ReadRawValuesRequest()
-    			, new ReadABCStatusRequest()
-    			);
-    }
+			LOG.log(Level.INFO, "Got Response: {0}", response);
+
+		}
+	}
+
+	private static Stream<AbstractMHZ19Request<?>> provideRequests() {
+		return Stream.of(new ReadCO2ValueRequest(), new ReadSensorRangeRequest(), new ReadRawValuesRequest(),
+				new ReadABCStatusRequest());
+	}
 
 }

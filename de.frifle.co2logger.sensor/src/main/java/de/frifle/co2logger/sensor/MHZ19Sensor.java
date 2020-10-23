@@ -13,7 +13,15 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.logging.Level;
 
+/**
+ * Thanks to https://revspace.nl/MH-Z19B for lots of details concerning all the commands.
+ *
+ * @author fRifle
+ *
+ */
 public class MHZ19Sensor implements AutoCloseable {
+
+	public static final byte DEFAULT_SENSOR_NUMBER = 1;
 
     private static final Logger LOG = Logger.getLogger(MHZ19Sensor.class.getName());
 
@@ -27,8 +35,12 @@ public class MHZ19Sensor implements AutoCloseable {
     private final byte sensorNumber;
 
     public MHZ19Sensor(String commPortName) throws MHZ19Exception {
+    	this( commPortName, DEFAULT_SENSOR_NUMBER );
+    }
+
+    public MHZ19Sensor(String commPortName, byte sensorNumber) throws MHZ19Exception {
         this.commPortName = commPortName;
-        this.sensorNumber = 0x01;
+        this.sensorNumber = sensorNumber;
         try {
             this.port = openCommPort(this.commPortName);
         } catch (NoSuchPortException | PortInUseException | UnsupportedCommOperationException e) {
@@ -46,10 +58,10 @@ public class MHZ19Sensor implements AutoCloseable {
     }
 
     public <M extends AbstractMHZ19Response> M sendRequest(AbstractMHZ19Request<M> request) throws IOException {
-        LOG.log(Level.INFO,"writing bytes of request {0}", request);
+        LOG.log(Level.FINE,"writing bytes of request {0}", request);
 
         writeRequest( request );
-        byte[] response = readResponse();
+        byte[] response = readResponse( request.getNumberOfResponseBytes() );
 
         return request.generateResponse( response );
     }
@@ -75,19 +87,21 @@ public class MHZ19Sensor implements AutoCloseable {
         log("written request ", bytes, crc);
     }
 
-    private byte[] readResponse( ) throws IOException {
-        InputStream in = this.port.getInputStream();
-        byte[] bytes = new byte[8];
-        for ( int i=0; i<8; i++ ){
-            bytes[i] = (byte)in.read();
-        }
-        byte crc = (byte)in.read();
-        log("read response ", bytes, crc);
-        if ( bytes[0] != START_BYTE ) {
-            throw new IOException("response starts not with START_BYTE 0xff");
-        }
-        if ( !CRCCheck.check(bytes, crc) ) {
-            throw new IOException("response with wrong checksum");
+    private byte[] readResponse( int numberOfResponseBytes ) throws IOException {
+        byte[] bytes = new byte[numberOfResponseBytes];
+        if ( numberOfResponseBytes>0 ) {
+	        InputStream in = this.port.getInputStream();
+	        for ( int i=0; i<numberOfResponseBytes; i++ ){
+	            bytes[i] = (byte)in.read();
+	        }
+	        byte crc = (byte)in.read();
+	        log("read response ", bytes, crc);
+	        if ( bytes[0] != START_BYTE ) {
+	            throw new IOException("response starts not with START_BYTE 0xff");
+	        }
+	        if ( !CRCCheck.check(bytes, crc) ) {
+	            throw new IOException("response with wrong checksum");
+	        }
         }
         return bytes;
     }
@@ -98,18 +112,20 @@ public class MHZ19Sensor implements AutoCloseable {
         SerialPort port = portId.open(MHZ19Sensor.class.getName(), WAIT_FOR_PORT_AVAIL);
         port.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
         port.enableReceiveTimeout(WAIT_FOR_DATA_AVAIL);
-        LOG.log(Level.INFO, "opened MH-Z19-Sensor on port {0}", portId.getName());
+        LOG.log(Level.CONFIG, "opened MH-Z19-Sensor on port {0}", portId.getName());
         return port;
     }
 
     private void log( String message, byte[] data, byte crc ) {
-        StringBuilder sb = new StringBuilder(message);
-        for ( int i=0; data!=null && i<data.length; i++) {
-            sb.append( toHexString( data[i] ) );
-        }
-        sb.append( " crc" );
-        sb.append( toHexString( crc ) );
-        LOG.info( sb.toString() );
+        LOG.finer( () -> {
+	        StringBuilder sb = new StringBuilder(message);
+	        for ( int i=0; data!=null && i<data.length; i++) {
+	            sb.append( toHexString( data[i] ) );
+	        }
+	        sb.append( " crc" );
+	        sb.append( toHexString( crc ) );
+        	return  sb.toString();
+        } );
     }
 
     private String toHexString( byte b ) {
