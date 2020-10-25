@@ -1,12 +1,16 @@
-package de.frifle.co2logger.webui;
+package de.frifle.co2logger.webui.boundary;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import de.frifle.co2logger.sensor.ABCStatus;
 
 @XmlRootElement(name = "mhz-19")
-public class MHZ19Data {
+public class MHZ19Dto implements Serializable {
+
+	private static final long serialVersionUID = -5529643882919064264L;
 
 	@XmlElement
 	private ABCStatus abcStatus;

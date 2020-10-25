@@ -115,7 +115,7 @@ public class MHZ19Sensor implements AutoCloseable {
     }
 
     private void log( String message, byte[] data, byte crc ) {
-        LOG.info( () -> {
+        LOG.finer( () -> {
 	        StringBuilder sb = new StringBuilder(message);
 	        for ( int i=0; data!=null && i<data.length; i++) {
 	            sb.append( toHexString( data[i] ) );

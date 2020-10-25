@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<meta charset="UTF-8" />
+	<title>CO2 Logger</title>
+</h:head>
+<h:body>
+	<main>
+		<header>CO2 Logger</header>
+		<article>
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="CO2 Value" />
+					<h:inputText value="#{mhz19Controller.mhz19dto.co2Value}" />
+					<h:outputLabel value="Uncut CO2 Value" />
+					<h:inputText value="#{mhz19Controller.mhz19dto.uncutCo2Value}" />
+					<h:outputLabel value="RAW CO2 Value" />
+					<h:inputText value="#{mhz19Controller.mhz19dto.rawCo2Value}" />
+					<h:outputLabel value="Temperature" />
+					<h:inputText value="#{mhz19Controller.mhz19dto.temperature}" />
+					<h:outputLabel value="ABC Status" />
+					<h:inputText value="#{mhz19Controller.mhz19dto.abcStatus}" />
+					<h:outputLabel value="Error" />
+					<h:inputText value="#{mhz19Controller.errorMessage}" />
+				</h:panelGrid>
+				<h:commandButton value="Toggle ABC"
+					action="#{mhz19Controller.toggleABCAction}" />
+				<h:messages />
+			</h:form>
+		</article>
+	</main>
+</h:body>
+</html>

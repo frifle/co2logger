@@ -1,4 +1,4 @@
-package de.frifle.co2logger.webui;
+package de.frifle.co2logger.webui.boundary.simplecache;
 
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.TYPE;
@@ -14,6 +14,6 @@ import javax.interceptor.InterceptorBinding;
 @Documented
 @Retention(RUNTIME)
 @Target({ TYPE, METHOD })
-public @interface SimpleCache {
+public @interface RefreshCache {
 
 }

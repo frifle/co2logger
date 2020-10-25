@@ -4,11 +4,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Initialized;
+import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
 import org.eclipse.microprofile.metrics.annotation.Gauge;
 
 import de.frifle.co2logger.sensor.ABCStatus;
+import de.frifle.co2logger.webui.boundary.MHZ19Dto;
+import de.frifle.co2logger.webui.boundary.MHZ19SensorBoundary;
 
 @ApplicationScoped
 public class MHZ19Metrics {
@@ -18,15 +22,21 @@ public class MHZ19Metrics {
 	@Inject
 	private MHZ19SensorBoundary sensor;
 
-	private MHZ19Data getDto() {
+	private MHZ19Dto getDto() {
 		try {
+			// here you get cached data, to this call usually is not expensive
 			return sensor.readCurrentData();
 		} catch (Exception e) {
 			LOG.log(Level.SEVERE, "oups, no connection to mh-z19-sensor", e);
 			throw new RuntimeException(e);
 		}
 	}
-	
+
+	public void init(@Observes @Initialized(ApplicationScoped.class) Object init) {
+        // intentionally empty
+		// replaces @StartUp
+    }
+
 	public ABCStatus getAbcStatus() {
 		return getDto().getAbcStatus();
 	}
