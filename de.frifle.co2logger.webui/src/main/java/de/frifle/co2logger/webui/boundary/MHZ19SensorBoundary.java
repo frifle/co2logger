@@ -36,7 +36,7 @@ public class MHZ19SensorBoundary {
 	private static final Logger LOG = Logger.getLogger(MHZ19SensorBoundary.class.getName());
 
 	@Inject
-	@ConfigProperty(name = "default.commPort")
+	@ConfigProperty(name = "commPort")
 	private String defaultCommPort;
 
 	private MHZ19Sensor sensor;

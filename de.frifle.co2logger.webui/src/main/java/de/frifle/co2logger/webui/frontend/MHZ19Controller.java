@@ -40,7 +40,7 @@ public class MHZ19Controller implements Serializable {
 		return mhz19dto;
 	}
 
-	public void toggleABCStatus() {
+	public void toggleABCStatusAction() {
 		try {
 			boundary.toggleABCStatus();
 		} catch (IOException e) {

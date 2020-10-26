@@ -7,6 +7,8 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Initialized;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 
 import org.eclipse.microprofile.metrics.annotation.Gauge;
 
@@ -15,6 +17,7 @@ import de.frifle.co2logger.webui.boundary.MHZ19Dto;
 import de.frifle.co2logger.webui.boundary.MHZ19SensorBoundary;
 
 @ApplicationScoped
+@Path("/metrics")
 public class MHZ19Metrics {
 
 	private static final Logger LOG = Logger.getLogger(MHZ19Metrics.class.getName());
@@ -36,6 +39,11 @@ public class MHZ19Metrics {
         // intentionally empty
 		// replaces @StartUp
     }
+
+	@GET
+	public String hallo() {
+		return "hallo";
+	}
 
 	public ABCStatus getAbcStatus() {
 		return getDto().getAbcStatus();

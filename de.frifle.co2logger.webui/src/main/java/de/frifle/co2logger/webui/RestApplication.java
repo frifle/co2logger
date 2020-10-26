@@ -1,4 +1,4 @@
-package de.frifle.co2logger.webui.rest;
+package de.frifle.co2logger.webui;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
