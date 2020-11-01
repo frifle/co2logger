@@ -16,7 +16,7 @@ Die andere Auswerteart ist zwar seltener zu finden, aber unvergleichlich viel ei
 
 Wir benötigen also ein Programm für den PICAXE, welches eine Pulslänge misst und diese Länge dann in einen Wert für einen Servo umrechnet. Das ist nicht schwer, und das Resultat liegt [hier](mhz19.bas). Die Details zum Programm werden unten noch weiter erläutert.
 
-Aber nun zum Aufbau.
+Aber nun zum Aufbau. Wir verwenden hier ein Steckboard, um die Lötarbeiten zu minimieren.
 
 ## Vorbereitung des Bilderrahmes
 
@@ -38,5 +38,38 @@ Der Servo wurde vermutlich mit mehreren Aufsetzen zur Montage von Zeigern o.ä. 
 <img src="../doc/pics/IMG_5364.JPG" title="Eingebauter Mikro-Servo, Ansicht Zeiger von vorne" width="50%"/>
 
 
+## Vorbereitung vom Sensor MH-Z19b
 
+Der Sensor MH-Z19b hat ungefähr die Maße einer halben Streichholzschachtel. Er besteht aus einer Platine und einem goldenen Metallgehäuse. Links und rechts vom Gehäuse hat die Platine 4 bzw 5 Lötaugen. Auf der Seite mit den fünf Augen ist noch eine Buchsenleiste angebaut. Letztere hat zum Gehäuse eine Sollbruchstelle, erkennbar durch eine Linie feiner Punkte.
+
+<img src="../doc/pics/IMG_5350.JPG" title="Der Sensor MH-Z19b" width="50%"/>
+
+Ihr könnt (müsst aber natürlich nicht) die Sollbruchstelle mit einem Cutter-Messer von beiden Seiten anritzen und die Buchsenleiste vorsichtig abbrechen. 
+
+Die vier Lötaugen werden nun mit einer Stiftleiste versehen. Wenn ihr eine lange Stiftleiste besorgt habt, dann könnt ihr ein Teilstück von vier Stiften mit einem Drahtschneider abtrennen. Die Stiftleiste wird von unten durch die Lötaugen gesteckt, so dass die langen Stücke der Stifte nach unten zeigen.
+
+<img src="../doc/pics/IMG_5351.JPG" title="Der Sensor MH-Z19b mit Stiftleiste von unten" width="50%"/>
+<img src="../doc/pics/IMG_5352.JPG" title="Der Sensor MH-Z19b mit Stiftleiste von vorn" width="50%"/>
+
+Die fünf Lötaugen bleiben frei, sie werden hier nicht benötigt. Für die Experimente mit dem Raspberry Pi habe ich allerdings dort eine Buchsenleiste _von oben_ angelötet.
+
+## Die Stromversorgung.
+
+Die Anzeige soll im Dauerbetrieb laufen, sie braucht also ein Netzteil. Der Sensor benötigt 5V mit einem Spitzenstrom von 150mA. Der Servo funktioniert bei 5V auch. Die Netzteile aus dem Fundus von alten Handy-Teilen liefern 5V bei mind. 500mA, das reicht. Ich nehme also ein solches Netzteil und baue es für den Einsatz auf dem Steckboard um.
+
+Ich habe hier gerade ein Netzteil mit einem alten proprietären Stecker da. Den werde ich abschneiden und statt dessen ein Stück Stiftleiste montieren. Wenn ihr allerdings ein Netzteil mit USB-Stecker habt, dann würde ich mir eine Mikro-USB-Buchse besorgen und diese auf ein Stück Platine löten, siehe Vorschlag unten.
+
+Doch nun zu meinem Stecker. Er wird abgeschnitten, die Drähte der Leitung werden getrennt und verzinnt.
+
+<img src="../doc/pics/IMG_5354.JPG" title="Altes Netzteil" width="50%"/>
+<img src="../doc/pics/IMG_5356.JPG" title="Netzteil mit abgetrenntem Stecker" width="50%"/>
+
+Nehmt nun eine Stiftleiste mit sechs Stiften und zieht die mittleren beiden Stifte heraus. Legt die Stifte zur Seite, wir brauchen sie gleich noch. Die beiden Stiftpaare werden jeweils mit einem Draht verlötet.
+
+<img src="../doc/pics/IMG_5357.JPG" title="Netzteil mit Stiftleiste" width="50%"/>
+
+Wir sind nun soweit, einen ersten Test auf dem Steckboard zu machen. Hoffentlich sind die Stiftleisten durch die Wärme des 
+Lötkolbens nicht zu sehr verbogen.
+
+<img src="../doc/pics/IMG_5358.JPG" title="Stromversorgung und Sensor auf dem Steckboard" width="50%"/>
 
