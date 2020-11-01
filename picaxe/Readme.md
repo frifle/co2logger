@@ -69,7 +69,8 @@ Nehmt nun eine Stiftleiste mit sechs Stiften und zieht die mittleren beiden Stif
 <img src="../doc/pics/IMG_5357.JPG" title="Netzteil mit Stiftleiste" width="50%"/>
 
 Wir sind nun soweit, einen ersten Test auf dem Steckboard zu machen. Hoffentlich sind die Stiftleisten durch die Wärme des 
-Lötkolbens nicht zu sehr verbogen. Messt mit einem Multimeter aus, wo bei der Stromversorgung der (+)-Pol ist. Markiert ihn unbedingt, damit es nachher nicht zu Verwechselungen kommt. Die Stiftleiste der Stromversorgung k
+Lötkolbens nicht zu sehr verbogen. Messt mit einem Multimeter aus, wo bei der Stromversorgung der (+)-Pol ist. Markiert ihn unbedingt, damit es nachher nicht zu Verwechselungen kommt. Die Stiftleiste der Stromversorgung kann noch mit etwas 2-k-Kleber 
+verstärkt werden. Insbesondere kann auf diesem Wege die (+)-Pol-Markierung gesichert werden.
 
 <img src="../doc/pics/IMG_5358.JPG" title="Stromversorgung und Sensor auf dem Steckboard" width="50%"/>
 
@@ -78,3 +79,49 @@ Die oben angesprochene Alternative für Leute mit USB-Netzteil zeigen die folgen
 <img src="../doc/pics/IMG_5368.JPG" title="Stromversorgung-Adapter für ein USB-Netzteil" width="50%"/>
 
 <img src="../doc/pics/IMG_5369.JPG" title="Stromversorgung-Adapter für ein USB-Netzteil" width="50%"/>
+
+
+## Das Programm für den PICAXE
+
+Das Programm für den PICAXE ist sehr übersichtlich, da das Basic vom PICAXE die eigentlich komplizierten Dinge zur Messung der Pulslänge oder zur Ansteuerung des Servos in schon vorgefertigte Basic-Befehle weg kapselt. Das Programm geht durch die folgenden Schritte durch:
+
+1. Bei Start wird mit dem Servo der gesamte Bereich einmal zum Test durchfahren.
+
+2. Nach einer Pause wird die Pulslänge gemessen. Da der Puls recht lang sein kann (bis ca 1s), wird der PICAXE etwas in der
+Geschwindigkeit gedrosselt, um diese Länge noch zuverlässig messen zu können. Wir drosseln auf 1MHz, pausieren kurz, messen dann die Länge und geben wieder mit 4MHz Gas. Das Ergebnis der Messung liegt nun in der Word-Variable `w0`, und zwar in Einheiten von `40µs`, siehe Datenblatt vom PICAXE. Es folgt die Umrechnung im Millisekunden, welche in der Word-Variable `w1` abgelegt werden.
+
+3. Nun wird per Dreisatz von Millisekunden auf den Steuerbereich des Servos umgerechnet. Dieser ist üblicherweise irgendwo zwischen 60 und 175 (laut Datenblatt des PICAXE), bei mir geht aber mehr: Der Servo kann zwischen 45 und 225 fahren. Entsprechend rechne ich um. Das Ergebnis liegt in der Word-Variable `w2`. Der Servo benötigt das niederwertige Byte, das wäre dann `b4`.
+
+4. Der berechnete Wert `b4`wird an den Servo gesendet, aber nur wenn er sich zur vorangegangenen Messung verändert hat. Den Wert
+merken wir uns in `b6`. Der Servo wird nur für 1s angelassen. Diese Zeit reicht aus, um den Servo zu positionieren. Die restliche Zeit sollte er aus sein. Zum einen verbraucht er dann weniger Strom, und er nervt nicht mit ständigem Gezirpe.
+
+5. Für die nächste Messung zurück zu 2.
+
+
+## Aufbau auf dem Steckboard
+
+Der PICAXE braucht zur Minimalbeschaltung eine Verbindung zu (+) an Pin 1, die Verbindung zu (GND) an Pin 8 sowie einen Pulldown-Widerstand an Pin 2. Zusätzlich hat er gerne noch einen Kondensator direkt am IC an der Stromversorgung verbaut.
+
+<img src="Schaltplan_Picaxe.png" title="Schaltplan" width="100%"/>
+
+Der Servo wird mit der Stromversorgung verbunden. Bei mir hat der Servo drei Kabel mit den Farben braun für (GND), rot für (+) und orange für die Steuerleitung. Die Steuerleitung wird mit Pin 3 vom PICAXE verbunden. Dieser PIN heisst im BASIC C.4. Die Stromversorgung vom Servo bekommt noch einen Kondensator spendiert.
+
+Wie der Sensor verbunden wird steht auf der Unterseite von seiner Platine. Der Anschluss Vin kommt an (+), GND kommt an GND und PWM liefert die Pulse. Dieser Anschluss wird mit Pin 5 vom PICAXE verbunden. Er heisst im BASIC C.2
+
+Auf dem Mini-Steckboard sieht die Verdrahtung so aus. Mit rotem Draht ist (+) verlegt, schwarz ist GND und weiss sind die Signalleitungen.
+
+<img src="../doc/pics/IMG_5361.JPG" title="Verdrahtung auf dem Steckboard." width="50%"/>
+
+Um den Servo mit dem Steckboard zu verbinden, verwenden wir die oben übrig gebliebenen Stifte aus der Stiftleiste:
+
+<img src="../doc/pics/IMG_5359.JPG" title="Verbindung des Servos mit Steckstiften." width="50%"/>
+<img src="../doc/pics/IMG_5360.JPG" title="Verbindung des Servos mit Steckstiften." width="50%"/>
+
+Servo, Sensor und Stromversorgung können nun auf das Steckboard gesetzt werden.
+
+<img src="../doc/pics/IMG_5362.JPG" title="Aufbau auf dem Steckboard." width="50%"/>
+
+## Finaler Zusammenbau
+
+
+## Kalibrierung vom Sensor
