@@ -4,8 +4,9 @@ Aus aktuellem Anlass beschäftigen sich ja gerade viele Leute mit CO2-Anzeigen o
 
 ## Einfach aufzubauende Version mit einem PICAXE im Bilderrahmen.
 
-
-![Der CO2-Anzeiger auf der Anrichte](doc/pics/IMG_5365.JPG?raw=true "Der CO2-Anzeiger auf der Anrichte")
+Die einfachste Variante verwendet einen PICAXE 08M2-Mikrocontroller mit einem Micro-Servo als Anzeige. Dieser Aufbau passt gut
+hinter einen Bilderrahmen und kann somit auf Omas Anrichte neben den Fotos der Enkelkinder drapiert werden.
+<img src="doc/pics/IMG_5365.JPG" tithe="Der CO2-Anzeiger auf der Anrichte" width="50%"/>
 
 ## Die Profi-Version als IOT-Version mit Raspberry-Pi, quarkus, prometheus und grafana.
 
