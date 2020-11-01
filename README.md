@@ -3,9 +3,9 @@
 Der Herbst ist da, und wir alle beschäftigen uns mit der Frage, wie wir uns und unseren Kindern einen möglichst sicheren Arbeits-,
 Schul- und Kitabesuch über den kommenden Winter ermöglichen. Wie können wir vermeiden, uns mit dem leidigen Corona-Virus anzustecken? Neben vielen Konzepten gibt es die Empfehlung, die Räume regelmäßig zu lüften, um dadurch die Konzentration an Aerosolen, die wir nun mal unvermeidlich ständig ausatmen, zu reduzieren. Nur - wann soll gelüftet werden, pauschal alle 20min wie es aktuell die Schulen praktizieren? Das ist sicherlich für eine Schulklasse als grobe Faustregel gut, aber privat ist das übertrieben. Hier brauchen wir etwas Hilfe, eine Lüftungs-Anzeige wäre sehr wünschenswert.
 
-Nun atmen wir ja nicht nur Aerosole, sondern insbesondere CO2 aus. In einem Raum, in dem sich eine Gruppe von Menschen aufhält und entsprechend atmet, und in dem sich keine weiteren Faktoren befinden, die auf die CO2-Gehalt der Luft wirken (z.B. viele Pflanzen oder Raucher), steigt der Gehalt der Aerosole zusammen mit der CO2-Konzentration. Und letzteres lässt sich messen. Wenn sich der CO2-Gehalt von einem Normalwert von 400ppm im Raum auf etwa 1000ppm erhöht hat, gilt als Empfehlung: Fenster auf!
+Nun atmen wir ja nicht nur Aerosole, sondern insbesondere CO2 aus. In einem Raum, in dem sich eine Gruppe von Menschen aufhält und entsprechend atmet, steigt der Gehalt der Aerosole zusammen mit der CO2-Konzentration. Und letzteres lässt sich messen. Wenn sich der CO2-Gehalt von einem Normalwert von 400ppm im Raum auf etwa 1000ppm erhöht hat, gilt als Empfehlung: Fenster auf!
 
-Für den CO2-Gehalt der Luft gibt es zahlreiche fertige Messgeräte und Sensoren, und es gibt aktuell viele Selbstbau-Vorschläge in allen Medien. Auch das Make-Magazin hatte in seiner letzten Ausgabe eine CO2-Ampel ausführlich vorgestellt.
+Für den CO2-Gehalt der Luft gibt es zahlreiche fertige Messgeräte und Sensoren, und es gibt aktuell viele Selbstbau-Vorschläge in allen Medien. Auch das [Make-Magazin](https://www.heise.de/make/) hatte in seiner letzten Ausgabe eine CO2-Ampel ausführlich vorgestellt.
 
 An dieser Stelle möchte ich meine persönlichen Versuche für eine CO2-Anzeige dokumentieren. Zum einen möchte ich einen Vorschlag machen, welcher sehr einfach und kostengünstig aufzubauen ist. Die Bauteile sind für unter 50€ zu bekommen, und er lässt sich daheim oder zusammen mit Schülern (und Eltern) innerhalb von etwa zwei Stunden aufbauen. In meinem zweiten Aufbau probiere ich ein paar Dinge aus, die mich schon lange jucken, nämlich einen IOT-Service auf dem Raspberry-Pi, gebaut mir Java und [quarkus](https://quarkus.io/) mit Auswertung durch [Prometheus](https://prometheus.io) und [Grafana](https://grafana.com).
 
@@ -21,5 +21,7 @@ Die Beschreibung für diesen Aufbau findet sich im Ordner [picaxe](picaxe). Der 
 die Bauteile sind für unter 50€ zu haben.
 
 ## Die Profi-Version mit Raspberry-Pi, quarkus, prometheus und grafana - IOT pur.
+
+Die RasPi-Version ist im Ordner [raspberry](raspberry) beschrieben. Hiermit sind nicht nur der aktuelle Wert der CO2-Konzentration auswertbar, sondern ganze Zeitreihen von diversen Parametern des Sensors MH-Z19b.
 
 ![Ein Screenshot einer morgentlichen Grafana-Auswertung]( doc/pics/Grafana_screenshot.png "Ein Screenshot einer morgentlichen Grafana-Auswertung")
