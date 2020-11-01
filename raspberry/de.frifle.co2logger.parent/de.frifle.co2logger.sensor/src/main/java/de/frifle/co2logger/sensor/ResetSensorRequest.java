@@ -14,6 +14,6 @@ public class ResetSensorRequest extends AbstractMHZ19Request<NoResponse> {
 
     @Override
     public NoResponse generateResponse( byte[] data) {
-        return new NoResponse( data) ;
+        return new NoResponse( getCommand(), data) ;
     }
 }

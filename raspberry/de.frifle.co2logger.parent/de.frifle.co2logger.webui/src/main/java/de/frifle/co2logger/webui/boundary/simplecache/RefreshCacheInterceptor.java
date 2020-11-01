@@ -8,8 +8,6 @@ import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 
-import de.frifle.co2logger.webui.boundary.simplecache.Cache.CacheEntry;
-
 @Interceptor
 @RefreshCache
 @Priority( Interceptor.Priority.APPLICATION )
