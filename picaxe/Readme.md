@@ -1,2 +1,12 @@
-#Hier kommt die Beschreibung der PICAXE-Version hin
+# Eine einfach aufzubauende Version mit einem PICAXE im Bilderrahmen.
 
+Der CO2-Bilderrahmen basiert auf dem kostengünstigen Sensor MH-Z19b sowie dem bekannten PICAXE-Mikrocontroller 08M2 (siehe ausführlich im aktuellen [MAKE-Sonderheft](https://www.heise.de/news/Sonderheft-Make-PICAXE-Special-jetzt-im-heise-shop-erhaeltlich-4889649.html)), welcher insbesondere durch Schüler einfach zu programmieren ist. Als Anzeige des CO2-Wertes verwenden wir einen kleinen Servo-Motor, welcher als Zeigerinstrument dient. Schließlich benötigen wir noch ein Programmiergerät für den PICAXE, entweder das Nano-Axe-Board aus dem Make-Sonderheft, oder das Pogrammierkabel vom PICAXE selbst, oder gar ein Eigenbau aus einem handelsüblichen USB-RS232-Adapter, siehe Ordner [programmieradapter](programmieradapter). Eine Computer zur Erstellung des Programms brauchen wir natürlich auch. Lötkolben, Platinen, Widerstände, Kabel und Kleinmaterial sollten sich irgendwo in einer Bastelkiste finden lassen.
+
+Wie man aus dem Datenblatt des Sensors entnehmen kann, gibt der MH-Z19b seinen Messwert auf drei verschiedene Arten und Weisen aus. Zum einen lässt er sich über ein serielles Protokoll auslesen. Dies wird von vielen Bauvorschlägen verwendet, die sich im Internet finden lassen. Allerdings ist die Implementierung von diesem Protokoll mit etwas Programmieraufwand auf Seiten des PICAXE verbunden, der sich nicht innerhalb einer Doppelstunde realisieren lässt.
+
+Die anderen beiden Auswertearten sind zwar seltener zu finden, aber unvergleichlich viel einfacher zu verwenden. Der Sensor gibt eine analoge Spannung aus, die direkt mit der CO2-Messung korreliert. Und er gibt über einen PWM-Ausgang Pulse aus, deren Länge der CO2-Konzentration entspricht. Beide Werte, Spannung und Pulslänge, muss man noch nicht mal großartig umrechnen, um den CO2-Gehalt zu bekommen. 
+    • Die Pulslänge in Millisekunden entspricht der halben CO2-Konzentration im ppm, bis auf 2ms: 
+          CO2(ppm)  = ( Pulslänge(ms) – 2 ms ) * 2 
+      Wenn ich also eine Pulslänge von 442ms messe, entspricht dies einer CO2-Konzentration von 880 ppm.
+    • Die analoge Spannung in Millivolt entspricht der CO2-Konzentration direkt.
+      Wenn ich also eine Spannung von 430mV am Eingang messe, entspricht dies einer CO2-Konzentration von 430 ppm.
