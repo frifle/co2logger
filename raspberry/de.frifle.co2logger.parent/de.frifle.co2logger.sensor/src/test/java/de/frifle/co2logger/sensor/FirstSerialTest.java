@@ -54,11 +54,23 @@ class FirstSerialTest {
 		}
 	}
 
+    @Test
+    @Disabled
+	void testZeroPointCalibration() throws Exception {
+		try (MHZ19Sensor sensor = new MHZ19Sensor(portName)) {
+			ZeroPointCalibrationRequest request = new ZeroPointCalibrationRequest();
+			AbstractMHZ19Response response = sensor.sendRequest(request);
+
+			LOG.log(Level.INFO, "Got Response: {0}", response);
+
+		}
+	}
+
 	@Test
 	@Disabled
 	void testSetSensorRange() throws Exception {
 		try (MHZ19Sensor sensor = new MHZ19Sensor(portName)) {
-			SetSensorRangeRequest request = new SetSensorRangeRequest(SensorRange.FIVE_THOUSAND);
+			SetSensorRangeRequest request = new SetSensorRangeRequest(SensorRange.TWO_THOUSAND);
 			ACKResponse response = sensor.sendRequest(request);
 
 			LOG.log(Level.INFO, "Got Response: {0}", response);

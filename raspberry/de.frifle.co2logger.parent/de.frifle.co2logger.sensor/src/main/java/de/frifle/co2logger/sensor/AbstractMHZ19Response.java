@@ -4,7 +4,7 @@ public abstract class AbstractMHZ19Response {
     private final byte command;
     private final byte[] data;
 
-    public AbstractMHZ19Response( byte[] data ){
+    public AbstractMHZ19Response( byte[] data ){        
         this.command = data[1];
         this.data = data;
     }

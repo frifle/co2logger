@@ -1,10 +1,10 @@
 package de.frifle.co2logger.sensor;
 
-public class ResetSensorRequest extends AbstractMHZ19Request<NoResponse> {
+public class ZeroPointCalibrationRequest extends AbstractMHZ19Request<NoResponse> {
 
     @Override
     public byte getCommand() {
-        return (byte)0x78;
+        return (byte)0x87;
     }
 
     @Override
