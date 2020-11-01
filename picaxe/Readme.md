@@ -10,27 +10,32 @@ Die andere Auswerteart ist zwar seltener zu finden, aber unvergleichlich viel ei
 
 ```
     Die Pulslänge in Millisekunden entspricht der halben CO2-Konzentration im ppm, bis auf 2ms: 
-
           CO2(ppm)  = ( Pulslänge(ms) – 2 ms ) * 2 
-    
     Wenn man also eine Pulslänge von 442ms misst, entspricht dies einer CO2-Konzentration von 880 ppm.
 ```
 
-Wir benötigen also ein Programm für den PICAXE, welches eine Pulslänge misst und diese Länge dann in einen Wert für einen Servo umrechnet. Das wars, und das Resultat liegt [hier](mhz19.bas). Die Details zum Programm werden unten noch weiter erläutert.
+Wir benötigen also ein Programm für den PICAXE, welches eine Pulslänge misst und diese Länge dann in einen Wert für einen Servo umrechnet. Das ist nicht schwer, und das Resultat liegt [hier](mhz19.bas). Die Details zum Programm werden unten noch weiter erläutert.
 
 Aber nun zum Aufbau.
 
 ## Vorbereitung des Bilderrahmes
 
-Der Bilderrahmen sollte Bilder vom Format 13x18cm fassen können. Ich verwende hier ein sehr preisgünstiges Exemplar aus einem Möbelhaus mit schwedisch klingendem Namen. Als Besonderheit ist die "Glasplatte" des Rahmens nicht wirklich aus Glas, sondern aus einem recht dünnen transparenten Plastik, vielleicht Plexiglas.
+Der Bilderrahmen sollte Bilder vom Format 13x18cm fassen können. Ich verwende hier ein sehr preisgünstiges Exemplar aus einem Möbelhaus mit schwedisch klingendem Namen. Als Besonderheit ist die "Glasplatte" des Rahmens nicht wirklich aus Glas, sondern aus einem recht dünnen transparenten Plastik, vielleicht Plexiglas. Dadurch ist es möglich, diese Platte zu durchbohren.
 
 Zunächst zeichnet euch eine passende CO2-Skala für den Bereich zwischen 400 und 2000ppm. Unter [../doc](../doc/CO2-Skala.pdf) liegt die Vorlage, die gerne verwendet werden kann. Die Skala wird auf die Maße des Rahmens zugeschnitten, bei mir also auf 13x18. Der Mittelpunkt der Skala ist mit einem kleinen "+" markiert, hier wird später der Zeiter vom Servo sitzen. Dieser Mittelpunkt sollte nach meiner Meinung aus optischen Gründen sowohl nach links und rechts als auch nach oben den gleichen Abstand (9cm) haben. Nach unten bleiben also 4cm Abstand zwischen Mittelpunkt und unterer Kante.
 
-Baut die Skala in den Bilderrahmen ein, dann bohrt vorsichtig (am besten per Hand) durch Plexiglas, Skala und Rahmenrückwand ein Loch mit einem Durchmesser, so dass der Hals vom Servo dort durch passt (11mm bei mir). Der Servo ist allerdings nicht rund, sondern Birnen-förmig. Entsprechend muss das Loch noch vorsichtig ausgefeilt werden. Aber bitte vorsichtig, auch Plexiglas kann brechen. Das Resultat seht ihr hier:
+Baut die Skala in den Bilderrahmen ein, dann bohrt vorsichtig (am besten per Hand) am Mittelpunkt (+) durch Plexiglas, Skala und Rahmenrückwand ein Loch mit einem Durchmesser, so dass der Hals vom Servo dort durch passt (11mm bei mir). Der Servo ist allerdings nicht rund, sondern Birnen-förmig. Entsprechend muss das Loch noch vorsichtig ausgefeilt werden. Aber bitte vorsichtig, auch Plexiglas kann brechen. Das Resultat seht ihr hier:
 
 <img src="../doc/pics/IMG_5344.JPG" title="Der vorbereitete Bilderrahmen" width="50%"/>
+<img src="../doc/pics/IMG_5347.JPG" title="Der vorbereitete Bilderrahmen" width="50%"/>
 
+Der Bilderrahmen hat hinten eine Stütze aus Pappe. Zwischen Rückwand und Stütze hat der Servo reichlich Platz. Der Motor kann dort mit etwas Klebstoff (ich nehme gerne 2-k-Kleber) fixiert werden.
 
+<img src="../doc/pics/IMG_5349.JPG" title="Eingebauter Mikro-Servo, Ansicht von hinten" width="50%"/>
+
+Der Servo wurde vermutlich mit mehreren Aufsetzen zur Montage von Zeigern o.ä. geliefert. Wählt den Aufsatz aus, welcher schon so aussieht wie ein Zeiger. Dieser kann verlängert werden, z.B. durch einen Strohhalm und etwas 2-k-Kleber.
+
+<img src="../doc/pics/IMG_5364.JPG" title="Eingebauter Mikro-Servo, Ansicht Zeiger von vorne" width="50%"/>
 
 
 
