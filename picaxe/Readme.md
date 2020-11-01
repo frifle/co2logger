@@ -69,7 +69,12 @@ Nehmt nun eine Stiftleiste mit sechs Stiften und zieht die mittleren beiden Stif
 <img src="../doc/pics/IMG_5357.JPG" title="Netzteil mit Stiftleiste" width="50%"/>
 
 Wir sind nun soweit, einen ersten Test auf dem Steckboard zu machen. Hoffentlich sind die Stiftleisten durch die Wärme des 
-Lötkolbens nicht zu sehr verbogen.
+Lötkolbens nicht zu sehr verbogen. Messt mit einem Multimeter aus, wo bei der Stromversorgung der (+)-Pol ist. Markiert ihn unbedingt, damit es nachher nicht zu Verwechselungen kommt. Die Stiftleiste der Stromversorgung k
 
 <img src="../doc/pics/IMG_5358.JPG" title="Stromversorgung und Sensor auf dem Steckboard" width="50%"/>
 
+Die oben angesprochene Alternative für Leute mit USB-Netzteil zeigen die folgenden zwei Bilder:
+
+<img src="../doc/pics/IMG_5368.JPG" title="Stromversorgung-Adapter für ein USB-Netzteil" width="50%"/>
+
+<img src="../doc/pics/IMG_5369.JPG" title="Stromversorgung-Adapter für ein USB-Netzteil" width="50%"/>
