@@ -17,7 +17,7 @@ Die einfachste Variante verwendet einen PICAXE 08M2-Mikrocontroller mit einem Mi
 hinter einen Bilderrahmen und kann somit auf Omas Anrichte neben den Fotos der Enkelkinder drapiert werden. Ebensogut macht er
 sich auf einem Lehrerpult oder dem Aktenschrank im Büro.
 
-<img src="doc/pics/IMG_5365.JPG" tithe="Der CO2-Anzeiger auf der Anrichte" width="50%"/>
+<img src="doc/pics/IMG_5365.JPG" title="Der CO2-Anzeiger auf der Anrichte" width="50%"/>
 
 Die Beschreibung für diesen Aufbau findet sich im Ordner [picaxe](picaxe). Der Bilderrahmen ist in etwa zwei Stunden zu bauen (wer noch nie einen PICAXE programmiert hat, braucht etwas länger), die Bauteile sind für unter 50€ zu haben.
 
