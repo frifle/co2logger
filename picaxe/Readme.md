@@ -16,6 +16,22 @@ Die andere Auswerteart ist zwar seltener zu finden, aber unvergleichlich viel ei
 
 Wir benötigen also ein Programm für den PICAXE, welches eine Pulslänge misst und diese Länge dann in einen Wert für einen Servo umrechnet. Das ist nicht schwer, und das Resultat liegt [hier](mhz19.bas). Die Details zum Programm werden unten noch weiter erläutert.
 
+## Stückliste
+
+Bauteil | Anzahl | Kosten | Bezugsquelle (Beispiel)
+--------|--------|--------|------------------------
+Sensor MH-Z19b | 1 | 20-30€ | [Berrybase](https://www.berrybase.de/neu/mh-z19b-infrarot-co2-sensor), [Reichelt](https://www.reichelt.de/infrarot-co2-sensor-mh-z19b-co2-mh-z19b-p266033.html) oder diverse Quellen mit Lieferung aus China
+PICAXE 08M2 | 1 | 3,50€ | (Picaxe-Shop)[http://www.picaxe-shop.de/epages/63174191.sf/secea3c825b6d/?ObjectPath=/Shops/63174191/Products/AXE007M2]
+Mikro Servo | 1 | 3,50€ | [Berrybase](https://www.berrybase.de/bauelemente/elektromagnetische-bauelemente/motoren-servos/sg-92r-micro-servo)
+Mini Steckboard | 1 | 0,80 € | [Berrybase](https://www.berrybase.de/raspberry-pi-co/raspberry-pi/prototyping/mini-breadboard-mit-170-kontakten)
+Stiftleiste | 1 | 0,85 € | [Reichelt](https://www.reichelt.de/stiftleisten-2-54-mm-1x50-gerade-mpe-087-1-050-p119891.html)
+Widerstand 10kOhm | 1 | 0,10€ | [Reichelt](https://www.reichelt.de/widerstand-kohleschicht-10-kohm-0207-250-mw-5--1-4w-10k-p1338.html)
+Drahtbrücken |  | 1€ | z.B. vom Baumarkt 1m 12-adriger Klingeldraht
+Kondensator 100nF | 2 | 0,06€ | [Reichelt](https://www.reichelt.de/keramik-kondensator-100n-kerko-100n-p9265.html)
+
+Zusätzlich brauchen wir ein Programmiergerät. Entweder das Nano-AXE-Board von der Make, oder aber per Selbstbau zB aus einem RS232-USB-Adapter, siehe Stückliste (dort)[programmieradapter].
+
+
 Aber nun zum Aufbau. Wir verwenden hier ein Steckboard, um die Lötarbeiten zu minimieren.
 
 ## Vorbereitung des Bilderrahmes
@@ -121,7 +137,11 @@ Servo, Sensor und Stromversorgung können nun auf das Steckboard gesetzt werden.
 
 <img src="../doc/pics/IMG_5362.JPG" title="Aufbau auf dem Steckboard." width="50%"/>
 
-## Finaler Zusammenbau
+Und damit sind wir bereit für den finalen Zusammenbau. Das Steckboard wird mit etwas Klebstoff auf der Rückseite des Bilderrahmens fixiert. Das Kabel zum Netzteil wird als Zugentlastung einmal um die Stütze des Bilderrahmens geknotet. Und voila, ab gehts mit dem Bild auf die Anrichte von Oma.
+
+<img src="../doc/pics/IMG_5370.JPG" title="Finaler Zusammenbau." width="50%"/>
 
 
 ## Kalibrierung vom Sensor
+
+Die Kalibrierung des Sensors hat sich in meinen Versuchen als ein Problem heraus gestellt. Dies ist noch work-in-progress und wird dich nächsten Tage ergänzt.
