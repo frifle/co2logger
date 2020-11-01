@@ -20,16 +20,19 @@ Wir benötigen also ein Programm für den PICAXE, welches eine Pulslänge misst 
 
 Bauteil | Anzahl | Kosten | Bezugsquelle (Beispiel)
 --------|--------|--------|------------------------
+Bilderrahmen 13x18 | 1 | ca 5€ | Bau- oder Möbelmarkt, idealerweise mit Kunststoff als "Glas"
 Sensor MH-Z19b | 1 | 20-30€ | [Berrybase](https://www.berrybase.de/neu/mh-z19b-infrarot-co2-sensor), [Reichelt](https://www.reichelt.de/infrarot-co2-sensor-mh-z19b-co2-mh-z19b-p266033.html) oder diverse Quellen mit Lieferung aus China
-PICAXE 08M2 | 1 | 3,50€ | (Picaxe-Shop)[http://www.picaxe-shop.de/epages/63174191.sf/secea3c825b6d/?ObjectPath=/Shops/63174191/Products/AXE007M2]
+PICAXE 08M2 | 1 | 3,50€ | [Picaxe-Shop](http://www.picaxe-shop.de/epages/63174191.sf/secea3c825b6d/?ObjectPath=/Shops/63174191/Products/AXE007M2)
 Mikro Servo | 1 | 3,50€ | [Berrybase](https://www.berrybase.de/bauelemente/elektromagnetische-bauelemente/motoren-servos/sg-92r-micro-servo)
 Mini Steckboard | 1 | 0,80 € | [Berrybase](https://www.berrybase.de/raspberry-pi-co/raspberry-pi/prototyping/mini-breadboard-mit-170-kontakten)
 Stiftleiste | 1 | 0,85 € | [Reichelt](https://www.reichelt.de/stiftleisten-2-54-mm-1x50-gerade-mpe-087-1-050-p119891.html)
 Widerstand 10kOhm | 1 | 0,10€ | [Reichelt](https://www.reichelt.de/widerstand-kohleschicht-10-kohm-0207-250-mw-5--1-4w-10k-p1338.html)
-Drahtbrücken |  | 1€ | z.B. vom Baumarkt 1m 12-adriger Klingeldraht
+Drahtbrücken |  | 1€ | z.B. vom Baumarkt 1m 12-adriger Klingeldraht, der aufgedröselt wird
 Kondensator 100nF | 2 | 0,06€ | [Reichelt](https://www.reichelt.de/keramik-kondensator-100n-kerko-100n-p9265.html)
 
 Zusätzlich brauchen wir ein Programmiergerät. Entweder das Nano-AXE-Board von der Make, oder aber per Selbstbau zB aus einem RS232-USB-Adapter, siehe Stückliste (dort)[programmieradapter].
+
+Und natürlich Kleinkram wie Lötkolben, Lötzinn, 2-k-Klebstoff, Werkzeug und alles, was ich hier vergessen habe.
 
 
 Aber nun zum Aufbau. Wir verwenden hier ein Steckboard, um die Lötarbeiten zu minimieren.
