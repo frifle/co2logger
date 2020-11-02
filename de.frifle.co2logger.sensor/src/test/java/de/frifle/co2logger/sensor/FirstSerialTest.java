@@ -55,7 +55,7 @@ class FirstSerialTest {
 	}
 
     @Test
-    @Disabled
+    //@Disabled
 	void testZeroPointCalibration() throws Exception {
 		try (MHZ19Sensor sensor = new MHZ19Sensor(portName)) {
 			ZeroPointCalibrationRequest request = new ZeroPointCalibrationRequest();
