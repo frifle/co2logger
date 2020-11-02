@@ -1,4 +1,4 @@
-# Eine einfach aufzubauende Version mit einem PICAXE im Bilderrahmen.
+# Ein CO2-Bilderrahmen mit einem PICAXE, einfach und schnell aufzubauen
 
 Der CO2-Bilderrahmen basiert auf dem kostengünstigen Sensor MH-Z19b sowie dem bekannten PICAXE-Mikrocontroller 08M2 (siehe ausführlich im aktuellen [MAKE-Sonderheft](https://www.heise.de/news/Sonderheft-Make-PICAXE-Special-jetzt-im-heise-shop-erhaeltlich-4889649.html)), welcher insbesondere durch Schüler einfach zu programmieren ist. Als Anzeige des CO2-Wertes verwenden wir einen kleinen Servo-Motor, der als Zeigerinstrument dient. Schließlich benötigen wir noch ein Programmiergerät für den PICAXE, entweder das Nano-Axe-Board aus dem Make-Sonderheft, oder das Pogrammierkabel vom PICAXE selbst, oder gar ein Eigenbau aus einem handelsüblichen USB-RS232-Adapter, siehe Ordner [Programmieradapter](programmieradapter). Eine Computer zur Erstellung des Programms brauchen wir natürlich auch. Lötkolben, Platinen, Widerstände, Kabel und Kleinmaterial sollten sich irgendwo in einer Bastelkiste finden lassen. Eine Stückliste ist unten zu finden.
 
@@ -6,11 +6,11 @@ Der CO2-Bilderrahmen basiert auf dem kostengünstigen Sensor MH-Z19b sowie dem b
 
 Wie man aus dem Datenblatt des Sensors entnehmen kann, gibt der MH-Z19b seinen Messwert auf verschiedene Arten und Weisen aus. Zum einen lässt er sich über ein serielles Protokoll auslesen. Dies wird von vielen Bauvorschlägen verwendet, die sich im Internet finden lassen. Allerdings ist die Implementierung von diesem Protokoll mit etwas Programmieraufwand auf Seiten des PICAXE verbunden, der sich nicht innerhalb einer Doppelstunde realisieren lässt. Diesen Aufwand treiben wir erst bei der Version mit dem [Raspberry](../raspberry).
 
-Die andere Auswerteart ist zwar seltener zu finden, aber unvergleichlich viel einfacher zu verwenden. Der Sensor gibt über einen PWM-Ausgang Pulse aus, deren Länge der CO2-Konzentration entspricht. Die Pulslänge muss man noch nicht mal großartig umrechnen, um den CO2-Gehalt zu bekommen. 
+Die andere Auswerteart ist zwar seltener zu finden, aber unvergleichlich viel einfacher zu verwenden. Der Sensor gibt über einen PWM-Ausgang Pulse aus, deren Länge der CO2-Konzentration entspricht. Die Pulslänge muss man noch nicht mal großartig umrechnen, um den CO2-Gehalt zu bekommen.
 
 ```
-    Die Pulslänge in Millisekunden entspricht der halben CO2-Konzentration im ppm, bis auf 2ms: 
-          CO2(ppm)  = ( Pulslänge(ms) – 2 ms ) * 2 
+    Die Pulslänge in Millisekunden entspricht der halben CO2-Konzentration im ppm, bis auf 2ms:
+          CO2(ppm)  = ( Pulslänge(ms) – 2 ms ) * 2
     Wenn man also eine Pulslänge von 442ms misst, entspricht dies einer CO2-Konzentration von 880 ppm.
 ```
 
@@ -21,7 +21,7 @@ Wir benötigen also ein Programm für den PICAXE, welches eine Pulslänge misst 
 Bauteil | Anzahl | Kosten | Bezugsquelle (Beispiel)
 --------|--------|--------|------------------------
 Bilderrahmen 13x18 | 1 | ca 5€ | Bau- oder Möbelmarkt, idealerweise mit Kunststoff als "Glas"
-Sensor MH-Z19b | 1 | 20-30€ | [Berrybase](https://www.berrybase.de/neu/mh-z19b-infrarot-co2-sensor), [Reichelt](https://www.reichelt.de/infrarot-co2-sensor-mh-z19b-co2-mh-z19b-p266033.html) oder diverse Quellen mit Lieferung aus China
+Sensor MH-Z19b | 1 | 20-30€ | [Berrybase](https://www.berrybase.de/neu/mh-z19b-infrarot-co2-sensor), [Reichelt](https://www.reichelt.de/infrarot-co2-sensor-mh-z19b-co2-mh-z19b-p266033.html) oder diverse Quellen mit Lieferung aus China (Achtung, lange Lieferzeit)
 PICAXE 08M2 | 1 | 3,50€ | [Picaxe-Shop](http://www.picaxe-shop.de/epages/63174191.sf/secea3c825b6d/?ObjectPath=/Shops/63174191/Products/AXE007M2)
 Mikro Servo | 1 | 3,50€ | [Berrybase](https://www.berrybase.de/bauelemente/elektromagnetische-bauelemente/motoren-servos/sg-92r-micro-servo)
 Mini Steckboard | 1 | 0,80 € | [Berrybase](https://www.berrybase.de/raspberry-pi-co/raspberry-pi/prototyping/mini-breadboard-mit-170-kontakten)
@@ -30,7 +30,8 @@ Widerstand 10kOhm | 1 | 0,10€ | [Reichelt](https://www.reichelt.de/widerstand-
 Drahtbrücken |  | 1€ | z.B. vom Baumarkt 1m 12-adriger Klingeldraht, der aufgedröselt wird
 Kondensator 100nF | 2 | 0,06€ | [Reichelt](https://www.reichelt.de/keramik-kondensator-100n-kerko-100n-p9265.html)
 
-Zusätzlich brauchen wir ein Programmiergerät. Entweder das Nano-AXE-Board von der Make, oder aber per Selbstbau zB aus einem RS232-USB-Adapter, siehe Stückliste (dort)[programmieradapter].
+Zusätzlich brauchen wir ein Programmiergerät. Entweder das Nano-AXE-Board von der Make, oder aber per Selbstbau zB aus einem RS232-USB-Adapter, siehe Stückliste
+[dort](programmieradapter).
 
 Und natürlich Kleinkram wie Lötkolben, Lötzinn, 2-k-Klebstoff, Werkzeug und alles, was ich hier vergessen habe.
 
@@ -39,9 +40,9 @@ Aber nun zum Aufbau. Wir verwenden hier ein Steckboard, um die Lötarbeiten zu m
 
 ## Vorbereitung des Bilderrahmes
 
-Der Bilderrahmen sollte Bilder vom Format 13x18cm fassen können. Ich verwende hier ein sehr preisgünstiges Exemplar aus einem Möbelhaus mit schwedisch klingendem Namen. Als Besonderheit ist die "Glasplatte" des Rahmens nicht wirklich aus Glas, sondern aus einem recht dünnen transparenten Plastik, vielleicht Plexiglas. Dadurch ist es möglich, diese Platte zu durchbohren.
+Der Bilderrahmen sollte Bilder vom Format 13x18cm fassen können. Ich verwende hier ein sehr preisgünstiges Exemplar aus einem Möbelhaus mit schwedisch klingendem Namen. Als Besonderheit ist die "Glasplatte" des Rahmens nicht wirklich aus Glas, sondern aus einem recht dünnen transparenten Plexiglas. Dadurch ist es möglich, diese Platte zu durchbohren.
 
-Zunächst zeichnet euch eine passende CO2-Skala für den Bereich zwischen 400 und 2000ppm. Unter [../doc](../doc/CO2-Skala.pdf) liegt die Vorlage, die gerne verwendet werden kann. Die Skala wird auf die Maße des Rahmens zugeschnitten, bei mir also auf 13x18. Der Mittelpunkt der Skala ist mit einem kleinen "+" markiert, hier wird später der Zeiter vom Servo sitzen. Dieser Mittelpunkt sollte nach meiner Meinung aus optischen Gründen sowohl nach links und rechts als auch nach oben den gleichen Abstand (9cm) haben. Nach unten bleiben also 4cm Abstand zwischen Mittelpunkt und unterer Kante.
+Zunächst zeichnet euch eine passende CO2-Skala für den Bereich zwischen 400 und 2000ppm. Unter [../doc](../doc/CO2-Skala.pdf) liegt die Vorlage, die gerne verwendet werden kann. Die Skala wird auf die Maße des Rahmens zugeschnitten, bei mir also auf 13x18. Der Mittelpunkt der Skala ist mit einem kleinen "+" markiert, hier wird später der Zeiger vom Servo sitzen. Dieser Mittelpunkt sollte nach meiner Meinung aus optischen Gründen sowohl nach links und rechts als auch nach oben den gleichen Abstand (9cm) haben. Nach unten bleiben also 4cm Abstand zwischen Mittelpunkt und unterer Kante.
 
 Baut die Skala in den Bilderrahmen ein, dann bohrt vorsichtig (am besten per Hand) am Mittelpunkt (+) durch Plexiglas, Skala und Rahmenrückwand ein Loch mit einem Durchmesser, so dass der Hals vom Servo dort durch passt (11mm bei mir). Der Servo ist allerdings nicht rund, sondern Birnen-förmig. Entsprechend muss das Loch noch vorsichtig ausgefeilt werden. Aber bitte vorsichtig, auch Plexiglas kann brechen. Das Resultat seht ihr hier:
 
@@ -63,7 +64,7 @@ Der Sensor MH-Z19b hat ungefähr die Maße einer halben Streichholzschachtel. Er
 
 <img src="../doc/pics/IMG_5350.JPG" title="Der Sensor MH-Z19b" width="50%"/>
 
-Ihr könnt (müsst aber natürlich nicht) die Sollbruchstelle mit einem Cutter-Messer von beiden Seiten anritzen und die Buchsenleiste vorsichtig abbrechen. 
+Ihr könnt (müsst aber natürlich nicht) die Sollbruchstelle mit einem Cutter-Messer von beiden Seiten anritzen und die Buchsenleiste vorsichtig abbrechen.
 
 Die vier Lötaugen werden nun mit einer Stiftleiste versehen. Wenn ihr eine lange Stiftleiste besorgt habt, dann könnt ihr ein Teilstück von vier Stiften mit einem Drahtschneider abtrennen. Die Stiftleiste wird von unten durch die Lötaugen gesteckt, so dass die langen Stücke der Stifte nach unten zeigen.
 
@@ -87,8 +88,8 @@ Nehmt nun eine Stiftleiste mit sechs Stiften und zieht die mittleren beiden Stif
 
 <img src="../doc/pics/IMG_5357.JPG" title="Netzteil mit Stiftleiste" width="50%"/>
 
-Wir sind nun soweit, einen ersten Test auf dem Steckboard zu machen. Hoffentlich sind die Stiftleisten durch die Wärme des 
-Lötkolbens nicht zu sehr verbogen. Messt mit einem Multimeter aus, wo bei der Stromversorgung der (+)-Pol ist. Markiert ihn unbedingt, damit es nachher nicht zu Verwechselungen kommt. Die Stiftleiste der Stromversorgung kann noch mit etwas 2-k-Kleber 
+Wir sind nun soweit, einen ersten Test auf dem Steckboard zu machen. Hoffentlich sind die Stiftleisten durch die Wärme des
+Lötkolbens nicht zu sehr verbogen. Messt mit einem Multimeter aus, wo bei der Stromversorgung der (+)-Pol ist. Markiert ihn unbedingt, damit es nachher nicht zu Verwechselungen kommt. Die Stiftleiste der Stromversorgung kann noch mit etwas 2-k-Kleber
 verstärkt werden. Insbesondere kann auf diesem Wege die (+)-Pol-Markierung gesichert werden.
 
 <img src="../doc/pics/IMG_5358.JPG" title="Stromversorgung und Sensor auf dem Steckboard" width="50%"/>
@@ -102,14 +103,16 @@ Die oben angesprochene Alternative für Leute mit USB-Netzteil zeigen die folgen
 
 ## Das Programm für den PICAXE
 
-Das Programm für den PICAXE ist sehr übersichtlich, da das Basic vom PICAXE die eigentlich komplizierten Dinge zur Messung der Pulslänge oder zur Ansteuerung des Servos in schon vorgefertigte Basic-Befehle weg kapselt. Das Programm geht durch die folgenden Schritte durch:
+Das [Programm](mhz19.bas) für den PICAXE ist sehr übersichtlich, da das Basic vom PICAXE die eigentlich komplizierten Dinge zur Messung der Pulslänge oder zur Ansteuerung des Servos in schon vorgefertigte Basic-Befehle wegkapselt. Das Programm geht durch die folgenden Schritte durch:
 
-1. Bei Start wird mit dem Servo der gesamte Bereich einmal zum Test durchfahren.
+1. Bei Start wird mit dem Servo der gesamte Anzeige-Bereich einmal zum Test durchfahren.
 
-2. Nach einer Pause wird die Pulslänge gemessen. Da der Puls recht lang sein kann (bis ca 1s), wird der PICAXE etwas in der
+2. Nach einer Pause von 5s wird die Pulslänge gemessen. Da der Puls recht lang sein kann (bis ca 1s), wird der PICAXE etwas in der
 Geschwindigkeit gedrosselt, um diese Länge noch zuverlässig messen zu können. Wir drosseln auf 1MHz, pausieren kurz, messen dann die Länge und geben wieder mit 4MHz Gas. Das Ergebnis der Messung liegt nun in der Word-Variable `w0`, und zwar in Einheiten von `40µs`, siehe Datenblatt vom PICAXE. Es folgt die Umrechnung im Millisekunden, welche in der Word-Variable `w1` abgelegt werden.
 
 3. Nun wird per Dreisatz von Millisekunden auf den Steuerbereich des Servos umgerechnet. Dieser ist üblicherweise irgendwo zwischen 60 und 175 (laut Datenblatt des PICAXE), bei mir geht aber mehr: Der Servo kann zwischen 45 und 225 fahren. Entsprechend rechne ich um. Das Ergebnis liegt in der Word-Variable `w2`. Der Servo benötigt das niederwertige Byte, das wäre dann `b4`.
+
+Die Wertebereiche, die in die Dreisatzrechnung einfliessen, sind schon fertig als Konstante eingebunden und etwas gerundet, um mit Integer-Werten arbeiten zu können. Ach, und eine Besonderheit des PICAXE: Er kennt keine Punkt- vor Strichrechnung, er rechnet stumpf von links nach rechts.
 
 4. Der berechnete Wert `b4`wird an den Servo gesendet, aber nur wenn er sich zur vorangegangenen Messung verändert hat. Den Wert
 merken wir uns in `b6`. Der Servo wird nur für 1s angelassen. Diese Zeit reicht aus, um den Servo zu positionieren. Die restliche Zeit sollte er aus sein. Zum einen verbraucht er dann weniger Strom, und er nervt nicht mit ständigem Gezirpe.
@@ -119,7 +122,7 @@ merken wir uns in `b6`. Der Servo wird nur für 1s angelassen. Diese Zeit reicht
 
 ## Aufbau auf dem Steckboard
 
-Der PICAXE braucht zur Minimalbeschaltung eine Verbindung zu (+) an Pin 1, die Verbindung zu (GND) an Pin 8 sowie einen Pulldown-Widerstand an Pin 2. Zusätzlich hat er gerne noch einen Kondensator direkt am IC an der Stromversorgung verbaut.
+Der PICAXE braucht zur Minimalbeschaltung eine Verbindung zu (+) an Pin 1, die Verbindung zu (GND) an Pin 8 sowie einen Pulldown-Widerstand an Pin 2. Zusätzlich hat er gerne noch einen Kondensator direkt am IC an der Stromversorgung verbaut. Vorsicht, die (+) und (GND)-Belegung ist hier ungewöhnlich: (+) ist "unten"!
 
 <img src="Schaltplan_Picaxe.png" title="Schaltplan" width="100%"/>
 
@@ -147,4 +150,4 @@ Und damit sind wir bereit für den finalen Zusammenbau. Das Steckboard wird mit 
 
 ## Kalibrierung vom Sensor
 
-Die Kalibrierung des Sensors hat sich in meinen Versuchen als ein Problem heraus gestellt. Dies ist noch work-in-progress und wird dich nächsten Tage ergänzt.
+Die Kalibrierung des Sensors hat sich in meinen Versuchen als ein Problem heraus gestellt. Die Qualität der Sensoren, die ich in den letzten Tagen von verschiedenen Anbietern bekommen habe, scheint zu schwanken. Da ist noch Vertrauensaufbau nötig und etwas Experimentierbedarf. Dies ist also noch work-in-progress und wird die nächsten Tage ergänzt.
