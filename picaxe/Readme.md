@@ -75,7 +75,7 @@ Die fünf Lötaugen bleiben frei, sie werden hier nicht benötigt. Für die Expe
 
 ## Die Stromversorgung.
 
-Die Anzeige soll im Dauerbetrieb über 24h laufen, siehe [Pflegeregeln](https://github.com/frifle/co2logger#pflegeregeln) für den Seinsor. Der Bilderrahmen braucht also ein Netzteil. Unser Sensor benötigt 5V mit einem laut Datenblatt Spitzenstrom von 150mA. Der Servo funktioniert bei 5V auch. Die Netzteile aus dem Fundus von alten Handy-Teilen liefern 5V bei mind. 500mA, das reicht. Ich nehme also ein solches Netzteil und baue es für den Einsatz auf dem Steckboard um.
+Die Anzeige soll im Dauerbetrieb über 24h laufen, siehe [Pflegeregeln](https://github.com/frifle/co2logger#pflegeregeln) für den Sensor. Der Bilderrahmen braucht also ein Netzteil. Unser Sensor benötigt 5V mit einem laut Datenblatt Spitzenstrom von 150mA. Der Servo funktioniert bei 5V auch. Die Netzteile aus dem Fundus von alten Handy-Teilen liefern 5V bei mind. 500mA, das reicht. Ich nehme also ein solches Netzteil und baue es für den Einsatz auf dem Steckboard um.
 
 Ich habe hier gerade ein Netzteil mit einem alten proprietären Stecker da. Den werde ich abschneiden und statt dessen ein Stück Stiftleiste montieren. Wenn ihr allerdings ein Netzteil mit USB-Stecker habt, dann würde ich mir eine Mikro-USB-Buchse besorgen und diese auf ein Stück Platine löten, siehe Vorschlag unten.
 
@@ -114,7 +114,7 @@ In die Umrechnung für die CO2-Konzentration geht der Wertebereich des Sensors e
 
 3. Nun wird per Dreisatz von Millisekunden auf den Steuerbereich des Servos umgerechnet. Dieser ist üblicherweise irgendwo zwischen 60 und 175 (laut Datenblatt des PICAXE), bei mir geht aber mehr: Der Servo kann zwischen 45 und 225 fahren. Entsprechend rechne ich um. Das Ergebnis liegt in der Word-Variable `w2`. Der Servo benötigt das niederwertige Byte, das wäre dann `b4`.
 
-Die Wertebereiche, die in die Dreisatzrechnung einfliessen, sind schon fertig als Konstante eingebunden und etwas gerundet, um mit Integer-Werten arbeiten zu können. Ach, und eine Besonderheit des PICAXE: Er kennt keine Punkt- vor Strichrechnung, er rechnet stumpf von links nach rechts.
+Die Wertebereiche, die in die Dreisatzrechnung einfliessen, sind schon fertig als Konstante eingebunden und etwas gerundet, um mit Integer-Werten arbeiten zu können. Ach, und eine Besonderheit des PICAXE: Er kennt keine Punkt- vor Strichrechnung, er rechnet stumpf von links nach rechts..
 
 4. Der berechnete Wert `b4`wird an den Servo gesendet, aber nur wenn er sich zur vorangegangenen Messung verändert hat. Den Wert
 merken wir uns in `b6`. Der Servo wird nur für 1s angelassen. Diese Zeit reicht aus, um den Servo zu positionieren. Die restliche Zeit sollte er aus sein. Zum einen verbraucht er dann weniger Strom, und er nervt nicht mit ständigem Gezirpe.
