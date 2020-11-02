@@ -17,7 +17,7 @@ public class MHZ19Dto implements Serializable {
 	@XmlElement
 	private int co2Value;
 	@XmlElement
-	private int unclampedCo2Value;
+	private int uncutCo2Value;
 	@XmlElement
 	private int rawCo2Value;
 	@XmlElement
@@ -43,8 +43,8 @@ public class MHZ19Dto implements Serializable {
 		return co2Value;
 	}
 
-	public int getUnclampedCo2Value() {
-		return unclampedCo2Value;
+	public int getUncutCo2Value() {
+		return uncutCo2Value;
 	}
 
 	public int getRawCo2Value() {
@@ -87,8 +87,8 @@ public class MHZ19Dto implements Serializable {
 		this.co2Value = co2Value;
 	}
 
-	void setUnclampedCo2Value(int unclampedCo2Value) {
-		this.unclampedCo2Value = unclampedCo2Value;
+	void setUncutCo2Value(int unclampedCo2Value) {
+		this.uncutCo2Value = unclampedCo2Value;
 	}
 
 	void setRawCo2Value(int rawCo2Value) {

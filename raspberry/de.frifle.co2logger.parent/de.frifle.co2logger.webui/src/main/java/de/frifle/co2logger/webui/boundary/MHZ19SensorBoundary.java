@@ -26,8 +26,10 @@ import de.frifle.co2logger.sensor.ReadRawValuesRequest;
 import de.frifle.co2logger.sensor.ReadRawValuesResponse;
 import de.frifle.co2logger.sensor.ReadSensorRangeRequest;
 import de.frifle.co2logger.sensor.ReadSensorRangeResponse;
+import de.frifle.co2logger.sensor.SensorRange;
 import de.frifle.co2logger.sensor.SetABCStatusRequest;
-import de.frifle.co2logger.webui.boundary.simplecache.RefreshCache;
+import de.frifle.co2logger.sensor.SetSensorRangeRequest;
+import de.frifle.co2logger.webui.boundary.simplecache.InvalidateCache;
 import de.frifle.co2logger.webui.boundary.simplecache.SimpleCache;
 
 @ApplicationScoped
@@ -58,23 +60,38 @@ public class MHZ19SensorBoundary {
 		}
 	}
 
+	public String getSensorCommPortName() {
+		return sensor.getCommPortName();
+	}
+
+	public int getSensorNumber() {
+		return sensor.getSensorNumber();
+	}
+
 	@SimpleCache
 	public synchronized MHZ19Dto readCurrentData() throws IOException {
 		MHZ19Dto dto = new MHZ19Dto();
 		readCO2ValueStatus(dto);
 		readRawCO2Status(dto);
 		readRawValuesStatus(dto);
-//		readSensorRangeStatus(dto);
+		readSensorRangeStatus(dto);
 //		readDACRangeStatus(dto);
 		readABCStatus(dto);
 		return dto;
 	}
 
-	@RefreshCache
+	@InvalidateCache
 	public synchronized void toggleABCStatus() throws IOException {
 		MHZ19Dto dto = new MHZ19Dto();
 		readABCStatus(dto);
 		setABCStatus( dto.getAbcStatus()==ABCStatus.OFF ? ABCStatus.ON : ABCStatus.OFF );
+	}
+
+	@InvalidateCache
+	public synchronized void toggleSensorRange() throws IOException {
+		MHZ19Dto dto = new MHZ19Dto();
+		readSensorRangeStatus(dto);
+		setSensorRange( dto.getSensorRangeHighValue() == SensorRange.TWO_THOUSAND.getHighValue() ? SensorRange.FIVE_THOUSAND : SensorRange.TWO_THOUSAND );
 	}
 
 	private void readCO2ValueStatus( MHZ19Dto dto ) throws IOException {
@@ -90,7 +107,7 @@ public class MHZ19SensorBoundary {
 
 	private void readRawValuesStatus( MHZ19Dto dto ) throws IOException {
 		ReadRawValuesResponse response = sensor.sendRequest(new ReadRawValuesRequest());
-		dto.setUnclampedCo2Value( response.getCo2Value() );
+		dto.setUncutCo2Value( response.getCo2Value() );
 		dto.setLightValue( response.getLightValue() );
 		dto.setRawTemperature( response.getTemperature() );
 	}
@@ -116,4 +133,7 @@ public class MHZ19SensorBoundary {
 		sensor.sendRequest(new SetABCStatusRequest( status ));
 	}
 
+	private void setSensorRange( SensorRange range ) throws IOException {
+		sensor.sendRequest(new SetSensorRangeRequest( range ));
+	}
 }

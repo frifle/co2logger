@@ -13,7 +13,7 @@ Damit wir uns nicht missverstehen: so ein Selbstbau-Sensor kann natürlich immer
 
 ## Ein CO2-Bilderraumen mit PICAXE, einfach und schnell aufgebaut.
 
-Die einfachste Variante verwendet einen PICAXE 08M2-Mikrocontroller mit einem Micro-Servo als Anzeige. Dieser Aufbau passt gut
+Die [einfachste Variante](picaxe) verwendet einen PICAXE 08M2-Mikrocontroller mit einem Micro-Servo als Anzeige. Dieser Aufbau passt gut
 hinter einen Bilderrahmen und kann somit auf Omas Anrichte neben den Fotos der Enkelkinder drapiert werden. Ebensogut macht er
 sich auf einem Lehrerpult oder dem Aktenschrank im Büro.
 

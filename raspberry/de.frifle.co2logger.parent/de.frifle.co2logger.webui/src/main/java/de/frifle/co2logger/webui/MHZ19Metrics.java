@@ -56,7 +56,7 @@ public class MHZ19Metrics {
 
 	@Gauge(unit = "ppm", name = "unclambedCo2Value", displayName = "Unclamped CO2 Value")
 	public int getUnclampedCo2Value() {
-		return getDto().getUnclampedCo2Value();
+		return getDto().getUncutCo2Value();
 	}
 
 	@Gauge(unit = "some count", name = "rawCo2Value", displayName = "RAW CO2 Value")
