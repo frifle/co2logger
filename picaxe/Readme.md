@@ -119,6 +119,7 @@ merken wir uns in `b6`. Der Servo wird nur für 1s angelassen. Diese Zeit reicht
 
 5. Für die nächste Messung zurück zu 2.
 
+Für die Programmierung vom PICAXE wird eine Software benötigt, z.B. der [Picaxe Editor](https://picaxe.com/software/) oder [Blockly](https://picaxe.com/software/). Damit kann unser Programm über das Nano-AXE-Board oder den [Programmieradapter](programmieradapter) auf PICAXE-Mikrocontroller aufgespielt werden. Wer noch nie einen PICAXE programmiert hat, sollte sich vielleicht zunächst kurz mit einer blinkenden LED beschäftigen, siehe [MAKE-Sonderheft](https://www.heise.de/news/Sonderheft-Make-PICAXE-Special-jetzt-im-heise-shop-erhaeltlich-4889649.html).
 
 ## Aufbau auf dem Steckboard
 
