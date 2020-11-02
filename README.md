@@ -39,9 +39,11 @@ Kalibrierung ist teuer - und unser Sensor ist billig. Dies ist mit  Sicherheit i
 
 Ich denke aber, dass wir für die Zwecke hier mit dem MH-Z19b einen guten Sensor gefunden haben. Allerdings gibt es Regeln zu beachten:
 
+### Pflegeregeln
+
 1. Der Sensor muss 24x7 an der Stromversorgung hängen, damit er die Kalibrierungs-Zyklen durchführen kann.
 
-2. Mindestens einmal am Tag muss er wirklich an der Frischluft sein, so dass er stets relativ zu den 400ppm messen kann.
+2. Mindestens einmal am Tag muss er wirklich an der Frischluft sein, so dass er stets relativ zu den 400ppm messen kann. Dabei bitte nicht von der Stromversorgung trennen, sonst beginnen die 24h nach meinem Eindruck von vorn.
 
 3. Feuchtigkeit verträgt er gar nicht - auch nicht Küchendämpfe oder Staub. Also bitte einen trockenen und sauberen Standort suchen.
 

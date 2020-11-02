@@ -9,9 +9,9 @@ Wie man aus dem Datenblatt des Sensors entnehmen kann, gibt der MH-Z19b seinen M
 Die andere Auswerteart ist zwar seltener zu finden, aber unvergleichlich viel einfacher zu verwenden. Der Sensor gibt über einen PWM-Ausgang Pulse aus, deren Länge der CO2-Konzentration entspricht. Die Pulslänge muss man noch nicht mal großartig umrechnen, um den CO2-Gehalt zu bekommen.
 
 ```
-    Die Pulslänge in Millisekunden entspricht der halben CO2-Konzentration im ppm, bis auf 2ms:
-          CO2(ppm)  = ( Pulslänge(ms) – 2 ms ) * 2
-    Wenn man also eine Pulslänge von 442ms misst, entspricht dies einer CO2-Konzentration von 880 ppm.
+    # Die Pulslänge in Millisekunden entspricht der halben CO2-Konzentration im ppm, bis auf 2ms:
+          CO2(ppm)  = ( Pulslänge(ms) – 2 ms ) * 2      # ( oder * 5, je nach Sensor-Bereich )
+    # Wenn man also eine Pulslänge von 442ms misst, entspricht dies einer CO2-Konzentration von 880 ppm.
 ```
 
 Wir benötigen also ein Programm für den PICAXE, welches eine Pulslänge misst und diese Länge dann in einen Wert für einen Servo umrechnet. Das ist nicht schwer, und das Resultat liegt [hier](mhz19.bas). Die Details zum Programm werden unten noch weiter erläutert.
@@ -75,7 +75,7 @@ Die fünf Lötaugen bleiben frei, sie werden hier nicht benötigt. Für die Expe
 
 ## Die Stromversorgung.
 
-Die Anzeige soll im Dauerbetrieb laufen, sie braucht also ein Netzteil. Der Sensor benötigt 5V mit einem Spitzenstrom von 150mA. Der Servo funktioniert bei 5V auch. Die Netzteile aus dem Fundus von alten Handy-Teilen liefern 5V bei mind. 500mA, das reicht. Ich nehme also ein solches Netzteil und baue es für den Einsatz auf dem Steckboard um.
+Die Anzeige soll im Dauerbetrieb über 24h laufen, siehe [Pflegeregeln](https://github.com/frifle/co2logger#pflegeregeln) für den Seinsor. Der Bilderrahmen braucht also ein Netzteil. Unser Sensor benötigt 5V mit einem laut Datenblatt Spitzenstrom von 150mA. Der Servo funktioniert bei 5V auch. Die Netzteile aus dem Fundus von alten Handy-Teilen liefern 5V bei mind. 500mA, das reicht. Ich nehme also ein solches Netzteil und baue es für den Einsatz auf dem Steckboard um.
 
 Ich habe hier gerade ein Netzteil mit einem alten proprietären Stecker da. Den werde ich abschneiden und statt dessen ein Stück Stiftleiste montieren. Wenn ihr allerdings ein Netzteil mit USB-Stecker habt, dann würde ich mir eine Mikro-USB-Buchse besorgen und diese auf ein Stück Platine löten, siehe Vorschlag unten.
 
@@ -108,7 +108,9 @@ Das [Programm](mhz19.bas) für den PICAXE ist sehr übersichtlich, da das Basic 
 1. Bei Start wird mit dem Servo der gesamte Anzeige-Bereich einmal zum Test durchfahren.
 
 2. Nach einer Pause von 5s wird die Pulslänge gemessen. Da der Puls recht lang sein kann (bis ca 1s), wird der PICAXE etwas in der
-Geschwindigkeit gedrosselt, um diese Länge noch zuverlässig messen zu können. Wir drosseln auf 1MHz, pausieren kurz, messen dann die Länge und geben wieder mit 4MHz Gas. Das Ergebnis der Messung liegt nun in der Word-Variable `w0`, und zwar in Einheiten von `40µs`, siehe Datenblatt vom PICAXE. Es folgt die Umrechnung im Millisekunden, welche in der Word-Variable `w1` abgelegt werden.
+Geschwindigkeit gedrosselt, um diese Länge noch zuverlässig messen zu können. Wir drosseln auf 1MHz, pausieren kurz, messen dann die Länge und geben wieder mit 4MHz Gas. Das Ergebnis der Messung liegt nun in der Word-Variable `w0`, und zwar in Einheiten von `40µs`, siehe Datenblatt vom PICAXE. Es folgt die Umrechnung im CO2-ppm, welche in der Word-Variable `w1` abgelegt werden.
+
+In die Umrechnung für die CO2-Konzentration geht der Wertebereich des Sensors ein. Die Sensoren werden allerdings leider in verschiedenen Einstellungen ausgeliefert. Ich habe hier Exemplare mit einer Einstellung von 0-2000 und von 0-5000 ppm. Zwar kann man den Sensorbereich mit einem Kommando auf der seriellen Schnittstelle umstellen. Aber wir wollen an dieser Stelle einfach bleibem. Wir können uns die Pulslänge des vorliegenden Sensors bei Frischluft (also ca 400ppm) ja ansehen. Daraus können wir die Einstellung des Sensors ablesen und entsprechend die Umrechung im Programm wählen. Der PICAXE kennt den `debug`-Befehl, über welchen wir die Werte der Variablen sehen können..
 
 3. Nun wird per Dreisatz von Millisekunden auf den Steuerbereich des Servos umgerechnet. Dieser ist üblicherweise irgendwo zwischen 60 und 175 (laut Datenblatt des PICAXE), bei mir geht aber mehr: Der Servo kann zwischen 45 und 225 fahren. Entsprechend rechne ich um. Das Ergebnis liegt in der Word-Variable `w2`. Der Servo benötigt das niederwertige Byte, das wäre dann `b4`.
 
