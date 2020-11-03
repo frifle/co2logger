@@ -75,7 +75,7 @@ Die fünf Lötaugen bleiben frei, sie werden hier nicht benötigt. Für die Expe
 
 ## Die Stromversorgung.
 
-Die Anzeige soll im Dauerbetrieb über 24h laufen, siehe [Pflegeregeln](https://github.com/frifle/co2logger#pflegeregeln) für den Sensor. Der Bilderrahmen braucht also ein Netzteil. Unser Sensor benötigt 5V mit einem laut Datenblatt Spitzenstrom von 150mA. Der Servo funktioniert bei 5V auch. Die Netzteile aus dem Fundus von alten Handy-Teilen liefern 5V bei mind. 500mA, das reicht. Ich nehme also ein solches Netzteil und baue es für den Einsatz auf dem Steckboard um.
+Die Anzeige soll im Dauerbetrieb über 24h laufen, siehe [Pflegeregeln](../#pflegeregeln) für den Sensor. Der Bilderrahmen braucht also ein Netzteil. Unser Sensor benötigt 5V mit einem laut Datenblatt Spitzenstrom von 150mA. Der Servo funktioniert bei 5V auch. Die Netzteile aus dem Fundus von alten Handy-Teilen liefern 5V bei mind. 500mA, das reicht. Ich nehme also ein solches Netzteil und baue es für den Einsatz auf dem Steckboard um.
 
 Ich habe hier gerade ein Netzteil mit einem alten proprietären Stecker da. Den werde ich abschneiden und statt dessen ein Stück Stiftleiste montieren. Wenn ihr allerdings ein Netzteil mit USB-Stecker habt, dann würde ich mir eine Mikro-USB-Buchse besorgen und diese auf ein Stück Platine löten, siehe Vorschlag unten.
 
@@ -150,7 +150,14 @@ Und damit sind wir bereit für den finalen Zusammenbau. Das Steckboard wird mit 
 
 <img src="../doc/pics/IMG_5370.JPG" title="Finaler Zusammenbau." width="50%"/>
 
+## Erster Funktionstest
+
+Wenn ihr nun den Bilderrahmen anschaltet (d.h. ihr steckt das Netzteil in die Steckdose), dann wird der Zeiger erst auf 2000 und dann auf 400 springen. Nach etwa 5 Sekunden zeigt er den ersten Messwert an, nach etwa 30s sollte er sich eingependelt haben.
+
+Als ersten Funktionstest atmet den Sensor mal eine Weile vorsichtig an, und zwar so, dass er etwa 30s in der Atemluft bleibt. Legt die Hand um ihn oder packt den Rahmen in eine kleine Kiste. Nach einer halben Minute sollte er mit einem Vollausschlag reagieren und, wenn ihr ihn wieder an die normale Luft setzt, sich langsam wieder beruhigen.
 
 ## Kalibrierung vom Sensor
 
-Die Kalibrierung des Sensors hat sich in meinen Versuchen als ein Problem heraus gestellt. Die Qualität der Sensoren, die ich in den letzten Tagen von verschiedenen Anbietern bekommen habe, scheint zu schwanken. Da ist noch Vertrauensaufbau nötig und etwas Experimentierbedarf. Dies ist also noch work-in-progress und wird die nächsten Tage ergänzt.
+Wie [hier](../#arbeitsweise-und-pflege-vom-sensors-mh-z19b) beschrieben, braucht der Sensor eine Kalibrierung. Und dies bedeutet bei unserem Aufbau: er braucht Zeit. Bitte stellt ihn nun für mind. 24h an einen Platz, der gut gelüftet ist. Der Sensor braucht eine Umgebung, welche gut an den Normalwert von 400ppm CO2 heran kommt. Er wird sich dann auf diesen Wert automatisch kalibirieren und relativ zu diesem Wert messen.
+
+Die Qualität der Sensoren, die ich in den letzten Tagen von verschiedenen Anbietern bekommen habe, scheint aber zu schwanken. Wenn die Messwerte zu sehr rauschen und der Zeiger des Bilderrahmens ständig schwankt, dann stellt den Sensor mal für 24h in einen nicht-gelüfteten Raum. Da hat bei mir zumindest ein Sensor-Exemplar deutlich beruhigt.

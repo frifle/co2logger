@@ -43,11 +43,13 @@ Ich denke aber, dass wir für die Zwecke hier mit dem MH-Z19b einen guten Sensor
 
 1. Der Sensor muss 24x7 an der Stromversorgung hängen, damit er die Kalibrierungs-Zyklen durchführen kann.
 
-2. Mindestens einmal am Tag muss er wirklich an der Frischluft sein, so dass er stets relativ zu den 400ppm messen kann. Dabei bitte nicht von der Stromversorgung trennen, sonst beginnen die 24h nach meinem Eindruck von vorn.
+2. Mindestens einmal am Tag muss er wirklich gut durchlüftet werden. Er muss laut Datenblatt für 20min in einer frisch gelüfteten Umgebung oder gar an der Frischluft sein, so dass er stets relativ zu den 400ppm messen kann. Dabei bitte nicht von der Stromversorgung trennen, sonst beginnen die 24h nach meinem Eindruck von vorn.
 
 3. Feuchtigkeit verträgt er gar nicht - auch nicht Küchendämpfe oder Staub. Also bitte einen trockenen und sauberen Standort suchen.
 
 4. Auch Wärme wie z.B. Heizungsluft oder direkte Sonneneinstrahlung muss gemieden werden. Zwar soll der Sensor die CO2-Konzentration temperaturkompensiert ausgeben. So recht traue ich dieser Funktion allerdings nicht.
 
-5. Manche Sensoren sind einfach kaputt. Ein Zweitsensor zum Vergleich hilft hier.
+5. Der beste Standort ist nach meinem Eindruck irgendwo ein Regal oder eine Kommode, wo sich der Sensor auf Schulter- oder Augenhöhe befindet. Idealerweise herrscht dort wenig Zug. Viel Wind führt zu deutlichen Schwankungen der Messung.
+
+6. Manche Sensoren sind einfach kaputt. Ein Zweitsensor zum Vergleich hilft hier.
 
