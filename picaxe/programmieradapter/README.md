@@ -1,7 +1,7 @@
 # Eigenbau eines Programmieradapters für die PICAXE-Mikrocontroller
 
 Das Programmierkabel von Picaxe ist nach meiner Meinung recht teuer. Aber die Kollegen von Revolution Education waren so nett,
-sogar in PICAXE-Manual [Nr 1, Abschnitt Serial Download Circuit](https://picaxe.com/docs/picaxe_manual1.pdf) einen Vorschlag für eine Eigenbau-Variante des Programmierkabels zu machen. Es wird dazu ein handelsüblicher RS232-USB-Adapter benötigt, der für deutlich weniger Geld (unter 10€) zu haben und vielseitiger verwendbar ist. Der Schaltplan dazu ist simple:
+sogar in PICAXE-Manual [Nr 1, Abschnitt Serial Download Circuit](https://picaxe.com/docs/picaxe_manual1.pdf#%5B%7B%22num%22%3A224%2C%22gen%22%3A0%7D%2C%7B%22name%22%3A%22Fit%22%7D%5D) einen Vorschlag für eine Eigenbau-Variante des Programmierkabels zu machen. Es wird dazu ein handelsüblicher RS232-USB-Adapter benötigt, der für deutlich weniger Geld (unter 10€) zu haben und vielseitiger verwendbar ist. Der Schaltplan dazu ist simple:
 
 <img src="Schaltplan_Programmieradapter.png" title="Schaltplan vom Programmieradapter" alt="Schaltplan vom Programmieradapter" width="50%"/>
 
