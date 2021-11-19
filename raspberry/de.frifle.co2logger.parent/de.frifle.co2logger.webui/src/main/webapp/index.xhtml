@@ -29,13 +29,13 @@
 					<h:outputText value="#{mhz19Controller.errorMessage}" />
 				</h:panelGrid>
 				<h:commandButton value="Toggle ABC"
-					action="#{mhz19Controller.toggleABCStatusAction}" >
-					<f:ajax execute="@form" render="@form"/>
-				</h:commandButton>
-				<h:commandButton value="Toggle Range"
-					action="#{mhz19Controller.toggleSensorRangeAction}">
-					<f:ajax execute="@form" render="@form"/>
-				</h:commandButton>
+					action="#{mhz19Controller.toggleABCStatusAction}" />
+					<h:commandButton value="Toggle Range"
+					action="#{mhz19Controller.toggleSensorRangeAction}" />
+					<h:commandButton value="Zero Calibrate"
+					action="#{mhz19Controller.zeroCalibrationAction}" />
+					<h:commandButton value="RESET"
+					action="#{mhz19Controller.resetAction}" />
 			</h:form>
 		</article>
 	</main>

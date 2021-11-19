@@ -1,4 +1,4 @@
-package de.frifle.co2logger.webui.boundary;
+package de.frifle.co2logger.quarkus.boundary;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -26,13 +26,11 @@ import de.frifle.co2logger.sensor.ReadRawValuesRequest;
 import de.frifle.co2logger.sensor.ReadRawValuesResponse;
 import de.frifle.co2logger.sensor.ReadSensorRangeRequest;
 import de.frifle.co2logger.sensor.ReadSensorRangeResponse;
-import de.frifle.co2logger.sensor.ResetSensorRequest;
 import de.frifle.co2logger.sensor.SensorRange;
 import de.frifle.co2logger.sensor.SetABCStatusRequest;
 import de.frifle.co2logger.sensor.SetSensorRangeRequest;
-import de.frifle.co2logger.sensor.ZeroPointCalibrationRequest;
-import de.frifle.co2logger.webui.boundary.simplecache.InvalidateCache;
-import de.frifle.co2logger.webui.boundary.simplecache.SimpleCache;
+import de.frifle.co2logger.quarkus.boundary.simplecache.InvalidateCache;
+import de.frifle.co2logger.quarkus.boundary.simplecache.SimpleCache;
 
 @ApplicationScoped
 public class MHZ19SensorBoundary {
@@ -80,15 +78,6 @@ public class MHZ19SensorBoundary {
 //		readDACRangeStatus(dto);
 		readABCStatus(dto);
 		return dto;
-	}
-
-	@InvalidateCache
-	public synchronized void zeroCalibrate() throws IOException {
-		sensor.sendRequest( new ZeroPointCalibrationRequest() );		
-	}
-	@InvalidateCache
-	public synchronized void reset() throws IOException {
-		sensor.sendRequest( new ResetSensorRequest() );		
 	}
 
 	@InvalidateCache
@@ -147,5 +136,4 @@ public class MHZ19SensorBoundary {
 	private void setSensorRange( SensorRange range ) throws IOException {
 		sensor.sendRequest(new SetSensorRangeRequest( range ));
 	}
-
 }

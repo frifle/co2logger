@@ -43,7 +43,7 @@ public class MHZ19Controller implements Serializable {
 	public String toggleABCStatusAction() {
 		try {
 			boundary.toggleABCStatus();
-			return "?faces-redirect=true";
+			return "index?faces-redirect=true";
 		} catch (IOException e) {
 			errorMessage = e.getMessage();
 			return null;
@@ -53,7 +53,27 @@ public class MHZ19Controller implements Serializable {
 	public String toggleSensorRangeAction() {
 		try {
 			boundary.toggleSensorRange();
-			return "?faces-redirect=true";
+			return "index?faces-redirect=true";
+		} catch (IOException e) {
+			errorMessage = e.getMessage();
+			return null;
+		}
+	}
+
+	public String zeroCalibrationAction() {
+		try {
+			boundary.zeroCalibrate();
+			return "index?faces-redirect=true";
+		} catch (IOException e) {
+			errorMessage = e.getMessage();
+			return null;
+		}
+	}
+
+	public String resetAction() {
+		try {
+			boundary.reset();
+			return "index?faces-redirect=true";
 		} catch (IOException e) {
 			errorMessage = e.getMessage();
 			return null;
